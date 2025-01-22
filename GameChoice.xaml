@@ -1,0 +1,33 @@
+﻿<Window x:Class="CasinoSimulator.GameChoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CasinoSimulator"
+        mc:Ignorable="d"
+        Title="GameChoice" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Name="imgBlackjack" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="0" Grid.Column="0"/>
+        <Button Name="btnBlackjack" Content="Blackjack" Height="30" Width="100" Grid.Row="0" Grid.Column="0" Margin="0 150 0 0"/>
+
+        <Image Name="imgRoulette" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="0" Grid.Column="1"/>
+        <Button Name="btnRoulette" Content="Roulette" Height="30" Width="100" Grid.Row="0" Grid.Column="1" Margin="0 150 0 0"/>
+
+        <Image Name="imgSlot" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="0" Grid.Column="2"/>
+        <Button Name="btnSlot" Content="Slot" Height="30" Width="100" Grid.Row="0" Grid.Column="2" Margin="0 150 0 0"/>
+
+        <Image Name="imgCross" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="0" Grid.Column="3"/>
+        <Button Name="btnCross" Content="Chicken Cross" Height="30" Width="100" Grid.Row="0" Grid.Column="3" Margin="0 150 0 0"/>
+    </Grid>
+</Window>
