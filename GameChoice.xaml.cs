@@ -34,7 +34,10 @@ namespace CasinoSimulator
 
         private void btnCross_Click(object sender, RoutedEventArgs e)
         {
+            ChickenCross ckWindow = new ChickenCross();
+            ckWindow.Show();
 
+            this.Close();
         }
 
         private void btnSlot_Click(object sender, RoutedEventArgs e)
