@@ -1,0 +1,27 @@
+﻿<Window x:Class="CasinoSimulator.Roulette"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CasinoSimulator"
+        mc:Ignorable="d"
+        Title="Roulette" Height="600" Width="1000">
+    <Canvas Background="#525252">
+        <!-- Roulette Wheel -->
+        <Canvas Name="rouletteWheel" Width="300" Height="300" Canvas.Left="50" Canvas.Top="100">
+            <!-- Place wheel sections here (e.g., colored rectangles or numbers) -->
+        </Canvas>
+
+        <!-- Betting Board -->
+        <Canvas Width="400" Height="200" Canvas.Left="400" Canvas.Top="100" Background="Green">
+            <!-- Betting options (e.g., numbers, odd/even) -->
+        </Canvas>
+
+        <!-- Controls -->
+        <Button Content="Bet 100" Width="80" Height="30" Canvas.Left="50" Canvas.Top="450" Click="Bet100_Click" />
+        <Button Content="Start Wheel" Width="100" Height="30" Canvas.Left="150" Canvas.Top="450" Click="StartWheel_Click" />
+        <TextBlock Name="currentBetText" Text="Current Bet: 0" Canvas.Left="50" Canvas.Top="500" Foreground="White" />
+        <TextBlock Name="balanceText" Text="Current Balance: 2800" Canvas.Left="50" Canvas.Top="530" Foreground="White" />
+        <Button Content="Exit" Width="60" Height="30" Canvas.Left="750" Canvas.Top="50" Click="Exit_Click" />
+    </Canvas>
+</Window>

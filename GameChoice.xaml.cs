@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -24,12 +26,16 @@ namespace CasinoSimulator
             InitializeComponent();
         }
 
-        private void btnBlackjack_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            BlackJack blackJackWindow = new BlackJack();
-            blackJackWindow.Show();
+            Login loginWindow = new Login();
+            loginWindow.ShowDialog();
+        }
 
-            this.Close();
+        private void btnRoulette_Click(object sender, RoutedEventArgs e)
+        {
+            Roulette roulette = new Roulette();
+            roulette.ShowDialog();
         }
     }
 }
