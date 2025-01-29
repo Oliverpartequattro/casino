@@ -31,5 +31,20 @@ namespace CasinoSimulator
 
             this.Close();
         }
+
+        private void btnCross_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSlot_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRoulette_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
