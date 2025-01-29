@@ -362,6 +362,10 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+obj/
+
+**/obj/
+
 AppName/bin/Release/AppName.exe
 AppName/bin/Release/AppName.odb
 AppName/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
