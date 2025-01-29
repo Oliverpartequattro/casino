@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-Z:\12C\C Cápa\casino\obj\Debug\net8.0-windows\
+Z:\2024-2025 12c\c\casino\obj\Debug\net8.0-windows\
 CasinoSimulator
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-Z:\IKT projekt\casino\App.xaml
-1-558232780
+Z:\2024-2025 12c\c\casino\App.xaml
+2420396531
 
-61358799851
+72095346594
 198-556154604
-GameChoice.xaml;
+BlackJack.xaml;GameChoice.xaml;
 
-True
+False
 
