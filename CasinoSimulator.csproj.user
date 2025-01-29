@@ -7,11 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="BlackJack.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="GameChoice.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="BlackJack.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="GameChoice.xaml">
       <SubType>Designer</SubType>
     </Page>
