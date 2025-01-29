@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\IKT projekt\\casino\\CasinoSimulator.csproj": {}
+    "Z:\\2024-2025 12c\\c\\casino\\CasinoSimulator.csproj": {}
   },
   "projects": {
-    "Z:\\IKT projekt\\casino\\CasinoSimulator.csproj": {
+    "Z:\\2024-2025 12c\\c\\casino\\CasinoSimulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\IKT projekt\\casino\\CasinoSimulator.csproj",
+        "projectUniqueName": "Z:\\2024-2025 12c\\c\\casino\\CasinoSimulator.csproj",
         "projectName": "CasinoSimulator",
-        "projectPath": "Z:\\IKT projekt\\casino\\CasinoSimulator.csproj",
-        "packagesPath": "C:\\Users\\roncz.oliver\\.nuget\\packages\\",
-        "outputPath": "Z:\\IKT projekt\\casino\\obj\\",
+        "projectPath": "Z:\\2024-2025 12c\\c\\casino\\CasinoSimulator.csproj",
+        "packagesPath": "C:\\Users\\reinhardt.benjamin\\.nuget\\packages\\",
+        "outputPath": "Z:\\2024-2025 12c\\c\\casino\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\roncz.oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\reinhardt.benjamin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
