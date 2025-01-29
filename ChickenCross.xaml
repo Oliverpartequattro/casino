@@ -6,11 +6,40 @@
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
         Title="ChickenCross" Height="450" Width="800">
-    <Grid Background="LightSlateGray">
+    <Grid>
         <Border BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="1" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="2" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="3" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="4" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="5" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="6" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="7" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="8" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="9" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="10" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="11" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="12" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="13" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="14" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="15" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="16" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="17" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="18" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="19" BorderBrush="White" BorderThickness="0 0 4 0"/>
+        <Border Grid.Column="20" BorderBrush="White" BorderThickness="0 0 4 0"/>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="img/rulett.png"></ImageBrush>
+        </Grid.Background>
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="base" Width="100px"/>
-            
+
+
+
+            <ColumnDefinition Name="base" Width="100px">
+                
+            </ColumnDefinition>
             <ColumnDefinition Name="jump0"  Width="50px"/>
             <ColumnDefinition Name="jump1"  Width="50px"/>
             <ColumnDefinition Name="jump2"  Width="50px"/>
