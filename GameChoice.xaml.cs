@@ -23,5 +23,13 @@ namespace CasinoSimulator
         {
             InitializeComponent();
         }
+
+        private void btnBlackjack_Click(object sender, RoutedEventArgs e)
+        {
+            BlackJack blackJackWindow = new BlackJack();
+            blackJackWindow.Show();
+
+            this.Close();
+        }
     }
 }
