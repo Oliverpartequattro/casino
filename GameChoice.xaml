@@ -30,7 +30,6 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Name="imgRoulette" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="1" Grid.Column="1"/>
                 <Button Name="btnRoulette" Content="Roulette" Height="30" Width="100" Grid.Row="1" Grid.Column="1" Margin="10 10 10 0" Click="btnRoulette_Click"/>
-                <Button Name="btnLogin" Grid.Row="1" Grid.Column="1" Click="btnLogin_Click">Login (test)</Button>
             </StackPanel>
         </Border>
 
