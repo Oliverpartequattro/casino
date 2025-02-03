@@ -24,6 +24,12 @@
     <Page Update="GameChoice.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Roulette.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Slot.xaml">
       <SubType>Designer</SubType>
     </Page>

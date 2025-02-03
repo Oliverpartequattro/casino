@@ -47,7 +47,8 @@ namespace CasinoSimulator
 
         private void btnRoulette_Click(object sender, RoutedEventArgs e)
         {
-
+            Roulette roulette = new Roulette();
+            roulette.Show();
         }
     }
 }
