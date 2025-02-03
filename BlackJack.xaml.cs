@@ -19,9 +19,16 @@ namespace CasinoSimulator
     /// </summary>
     public partial class BlackJack : Window
     {
+        private List<Card> dealerCards;
+        private List<Card> playerCards;
         public BlackJack()
         {
             InitializeComponent();
+        }
+
+        private void initCards()
+        {
+
         }
     }
 }

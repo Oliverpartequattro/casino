@@ -42,7 +42,10 @@ namespace CasinoSimulator
 
         private void btnSlot_Click(object sender, RoutedEventArgs e)
         {
+            Slot slotWindow = new Slot();
+            slotWindow.Show();
 
+            this.Close();
         }
 
         private void btnRoulette_Click(object sender, RoutedEventArgs e)
