@@ -5,62 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
-        Title="ChickenCross" Height="450" Width="800">
-    <Grid>
-        <Border BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="1" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="2" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="3" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="4" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="5" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="6" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="7" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="8" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="9" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="10" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="11" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="12" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="13" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="14" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="15" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="16" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="17" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="18" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="19" BorderBrush="White" BorderThickness="0 0 4 0"/>
-        <Border Grid.Column="20" BorderBrush="White" BorderThickness="0 0 4 0"/>
-
-        <Grid.Background>
-            <ImageBrush ImageSource="img/rulett.png"></ImageBrush>
-        </Grid.Background>
-        
-        <Grid.ColumnDefinitions>
-
-
-
-            <ColumnDefinition Name="base" Width="100px">
-                
-            </ColumnDefinition>
-            <ColumnDefinition Name="jump0"  Width="50px"/>
-            <ColumnDefinition Name="jump1"  Width="50px"/>
-            <ColumnDefinition Name="jump2"  Width="50px"/>
-            <ColumnDefinition Name="jump3"  Width="50px"/>
-            <ColumnDefinition Name="jump4"  Width="50px"/>
-            <ColumnDefinition Name="jump5"  Width="50px"/>
-            <ColumnDefinition Name="jump6"  Width="50px"/>
-            <ColumnDefinition Name="jump7"  Width="50px"/>
-            <ColumnDefinition Name="jump8"  Width="50px"/>
-            <ColumnDefinition Name="jump9"  Width="50px"/>
-            <ColumnDefinition Name="jump10" Width="50px"/>
-            <ColumnDefinition Name="jump11" Width="50px"/>
-            <ColumnDefinition Name="jump12" Width="50px"/>
-            <ColumnDefinition Name="jump13" Width="50px"/>
-            <ColumnDefinition Name="jump14" Width="50px"/>
-            <ColumnDefinition Name="jump15" Width="50px"/>
-            <ColumnDefinition Name="jump16" Width="50px"/>
-            <ColumnDefinition Name="jump17" Width="50px"/>
-            <ColumnDefinition Name="jump18" Width="50px"/>
-            <ColumnDefinition Name="jump19" Width="50px"/>
-            <ColumnDefinition Name="jump20" Width="50px"/>
-        </Grid.ColumnDefinitions>
-    </Grid>
-</Window>
+        Title="ChickenCross" Height="400" Width="1000">
+        <Canvas Name="gameCanvas" Background="SlateGray" Width="1000" Height="400">
+        <Grid Height="400" Width="1000"  VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" Name="ColumnStart"/>
+                <ColumnDefinition Name="Column1"/>
+                <ColumnDefinition Name="Column2"/>
+                <ColumnDefinition Name="Column3"/>
+                <ColumnDefinition Name="Column4"/>
+                <ColumnDefinition Name="Column5"/>
+                <ColumnDefinition Name="Column6"/>
+                <ColumnDefinition Name="Column7"/>
+                <ColumnDefinition Name="Column8"/>
+                <ColumnDefinition Name="Column9"/>
+                <ColumnDefinition Name="Column10"/>
+                <ColumnDefinition Name="Column11"/>
+                <ColumnDefinition Name="Column12"/>
+                <ColumnDefinition Name="Column13"/>
+                <ColumnDefinition Name="Column14"/>
+                <ColumnDefinition Name="Column15"/>
+                <ColumnDefinition Name="Column16"/>
+                <ColumnDefinition Name="Column17"/>
+                <ColumnDefinition Name="Column18"/>
+                <ColumnDefinition Name="Column19"/>
+                <ColumnDefinition Name="Column20"/>
+                <ColumnDefinition Width="100" Name="ColumnEnd"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="DimGray" Grid.Column="1"/>
+            <Border Background="DimGray" Grid.Column="3"/>
+            <Border Background="DimGray" Grid.Column="5"/>
+            <Border Background="DimGray" Grid.Column="7"/>
+            <Border Background="DimGray" Grid.Column="9"/>
+            <Border Background="DimGray" Grid.Column="11"/>
+            <Border Background="DimGray" Grid.Column="13"/>
+            <Border Background="DimGray" Grid.Column="15"/>
+            <Border Background="DimGray" Grid.Column="17"/>
+            <Border Background="DimGray" Grid.Column="19"/>
+            <Border Background="DarkOliveGreen" Grid.Column="0"/>
+            <Border Background="DarkOliveGreen" Grid.Column="21"/>
+            <Label Grid.Column="1" Content="1x1" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center"/>
+        </Grid>
+        </Canvas>
+    </Window>
