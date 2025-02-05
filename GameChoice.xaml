@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
         Title="GameChoice" Height="450" Width="800">
-    
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#EF233C"/>
@@ -22,7 +22,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#525252">
+    <Grid Name="g" Background="#525252">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -36,28 +36,28 @@
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="0" Margin="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgBlackjack" Source="img/blackjack.png" Width="100" Height="100" HorizontalAlignment="Center"/>
+                <Image Name="imgBlackjack" Width="100" Height="100" HorizontalAlignment="Center"/>
                 <Button Name="btnBlackjack" Content="Blackjack" Click="btnBlackjack_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="1" Margin="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgRoulette" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="1" Grid.Column="1"/>
+                <Image Name="imgRoulette" Width="100" Height="100" Grid.Row="1" Grid.Column="1"/>
                 <Button Name="btnRoulette" Content="Roulette" Click="btnRoulette_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="2" Margin="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgSlot" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="1" Grid.Column="2"/>
+                <Image Name="imgSlot" Width="100" Height="100" Grid.Row="1" Grid.Column="2"/>
                 <Button Name="btnSlot" Content="Slot" Click="btnSlot_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="3" Margin="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgCross" Source="img/blackjack.png" Width="100" Height="100" Grid.Row="1" Grid.Column="3"/>
+                <Image Name="imgCross" Width="100" Height="100" Grid.Row="1" Grid.Column="3"/>
                 <Button Name="btnCross" Content="Chicken Cross" Click="btnCross_Click"/>
             </StackPanel>
         </Border>

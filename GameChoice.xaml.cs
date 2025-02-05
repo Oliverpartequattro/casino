@@ -22,6 +22,26 @@ namespace CasinoSimulator
         public GameChoice()
         {
             InitializeComponent();
+            addImg(0, 0, "img/blackjack.png", 100, 100);
+            addImg(0, 1, "img/blackjack.png", 100, 100);
+            addImg(0, 2, "img/blackjack.png", 100, 100);
+        }
+
+        private void addImg(int row, int column, string path, int width, int height)
+        {
+            Image img = new Image();
+
+            img.Source = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+
+            img.Width = width;
+            img.Height = height;
+
+            Grid.SetRow(img, row);
+            Grid.SetColumn(img,column);
+
+            img.Margin = new Thickness(5);
+
+            g.Children.Add(img);
         }
 
         private void btnBlackjack_Click(object sender, RoutedEventArgs e)

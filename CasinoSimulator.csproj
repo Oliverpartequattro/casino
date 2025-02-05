@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="data\cards.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="img\blackjack oldal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -23,9 +26,6 @@
     </None>
     <None Update="img\rulett.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="users.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
