@@ -176,7 +176,25 @@ namespace CasinoSimulator
 
         private void StartWheel_Click(object sender, RoutedEventArgs e)
         {
-            //TODO   
+            // Spin the wheel
+            var rotateTransform = new RotateTransform();
+            rouletteWheel.RenderTransform = rotateTransform;
+            rouletteWheel.RenderTransformOrigin = new Point(0.5, 0.5);
+            var animation = new DoubleAnimation(0, 360 * 5 + random.Next(0, 360), new Duration(TimeSpan.FromSeconds(10)))
+            {
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
+            };
+            rotateTransform.BeginAnimation(RotateTransform.AngleProperty, animation);
+            animation.Completed += (s, _) => CalculateResult();
+        }
+
+        private void CalculateResult()
+        {
+            // Calculate the winning number
+            int winningNumber = random.Next(0, 37);
+            MessageBox.Show($"Winning number is: {winningNumber}");
+            // Check if the player won
+            // Add logic for payouts here...
         }
 
         private void UpdateUI()
