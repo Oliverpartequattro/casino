@@ -22,6 +22,8 @@ namespace CasinoSimulator
         private string[] symbols = { "🍒", "🍋", "🍊", "🔔", "⭐", "7" };
         private Random random = new Random();
         private int credits = 100;
+        private int screenSize = 800;
+        private int amount = 1;
         public Slot()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace CasinoSimulator
                 return;
             }
             
-            credits--; // Deduct one credit per spin
+            credits -= amount; // Deduct one credit per spin
             UpdateCreditsDisplay();
 
             // Disable the spin button during the animation
@@ -81,6 +83,18 @@ namespace CasinoSimulator
         private void UpdateCreditsDisplay()
         {
             CreditsText.Text = $"Credits: {credits}";
+        }
+
+        private void MinusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amount = amount--;
+            UpdateCreditsDisplay();
+        }
+
+        private void PlusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amount = amount++;
+            UpdateCreditsDisplay();
         }
     }
     

@@ -6,36 +6,38 @@
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
         Title="Slot" Height="450" Width="800">
-    <Grid Background="LightBlue">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/slotmachinefurit.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Title -->
-        <TextBlock Grid.Row="0" Text="Slot Machine" FontSize="32" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="0" Text="Fruit Brush" FontFamily="Comic Sans MS" FontSize="60" FontStyle="Italic" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
 
-        <!-- Reels -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Border BorderBrush="Black" BorderThickness="2" Margin="10" Padding="10" Background="White">
-                <TextBlock x:Name="Reel1" Text="?" FontSize="48" HorizontalAlignment="Center"/>
+            <Border Name="Border1" BorderBrush="Black" BorderThickness="2" Margin="10" Padding="10" Background="White">
+                <TextBlock x:Name="Reel1" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
             <Border BorderBrush="Black" BorderThickness="2" Margin="10" Padding="10" Background="White">
-                <TextBlock x:Name="Reel2" Text="?" FontSize="48" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="Reel2" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
             <Border BorderBrush="Black" BorderThickness="2" Margin="10" Padding="10" Background="White">
-                <TextBlock x:Name="Reel3" Text="?" FontSize="48" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="Reel3" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
         </StackPanel>
 
-        <!-- Controls -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click"/>
             <Button x:Name="ResetButton" Content="Reset" FontSize="24" Padding="10" Margin="10" Click="ResetButton_Click"/>
+            <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Click="PlusButton_Click" Height="50" Width="50"/>
+            <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="0 0 0 15"  Click="MinusButton_Click" Height="50" Width="50"/>
         </StackPanel>
 
-        <!-- Credits Display -->
         <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="CreditsText" FontSize="24" HorizontalAlignment="Right" Margin="10"/>
+        <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10"/>
     </Grid>
 </Window>
