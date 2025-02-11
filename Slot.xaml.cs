@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace CasinoSimulator
 {
-    /// <summary>
-    /// Interaction logic for Slot.xaml
-    /// </summary>
+    
     public partial class Slot : Window
     {
         private string[] symbols = { "🍒", "🍋", "🍊", "🔔", "⭐", "7" };
@@ -24,10 +22,13 @@ namespace CasinoSimulator
         private int credits = 100;
         private int screenSize = 800;
         private int amount = 1;
+        private int loseCounter = 0;
+
         public Slot()
         {
             InitializeComponent();
             UpdateCreditsDisplay();
+            UpdateBetDisplay();
         }
 
         private async void SpinButton_Click(object sender, RoutedEventArgs e)
@@ -38,27 +39,27 @@ namespace CasinoSimulator
                 return;
             }
             
-            credits -= amount; // Deduct one credit per spin
+            credits -= amount; 
             UpdateCreditsDisplay();
 
-            // Disable the spin button during the animation
             SpinButton.IsEnabled = false;
 
-            // Simulate spinning animation
             await SpinReel(Reel1);
             await SpinReel(Reel2);
             await SpinReel(Reel3);
 
-            // Check for a win
             if (Reel1.Text == Reel2.Text && Reel2.Text == Reel3.Text)
             {
-                int winnings = 50;
+                int winnings = amount * 50;
                 credits += winnings;
                 MessageBox.Show($"Congratulations! You won {winnings} credits!", "Winner!");
                 UpdateCreditsDisplay();
             }
+            else
+            {
+                loseCounter++;
+            }
 
-            // Re-enable the spin button
             SpinButton.IsEnabled = true;
         }
 
@@ -84,17 +85,22 @@ namespace CasinoSimulator
         {
             CreditsText.Text = $"Credits: {credits}";
         }
+        private void UpdateBetDisplay()
+        {
+            BetText.Text = $"Bet: {amount}";
+        }
 
         private void MinusButton_Click(object sender, RoutedEventArgs e)
         {
-            amount = amount--;
-            UpdateCreditsDisplay();
+            amount = amount-=1;
+
+            UpdateBetDisplay();
         }
 
         private void PlusButton_Click(object sender, RoutedEventArgs e)
         {
-            amount = amount++;
-            UpdateCreditsDisplay();
+            amount = amount+=1;
+            UpdateBetDisplay();
         }
     }
     
