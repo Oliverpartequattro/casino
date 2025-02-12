@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,13 +23,24 @@ namespace CasinoSimulator
     /// </summary>
     public partial class ChickenCross : Window
     {
-        
+        List<string> kepek = new List<string>()
+        {
+                { "start.jpg" },
+                { "finish.jpg" },
+                { "road.jpg" },
+                { "roadwblock.jpg" },
+        };
 
+        private Random random = new Random();
         private Rectangle chicken;
-        private double chickenSpeed = 800/20;
+        private int chickenSpeed = 40;
         private DispatcherTimer gameTimer;
         private double x = 1;
         private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20);
+        private int chickenStarCordinate = 100 + (800 / 20 / 4) - (800 / 20);
+        private int stepsForward = 0;
+        int steps = 2; //random.Next(2,22);
+
 
         public ChickenCross()
         {
@@ -45,66 +57,76 @@ namespace CasinoSimulator
                 Width = 20,
                 Height = 20,
                 Fill = Brushes.Yellow
-                
-
-
             };
-
 
             // Set initial position of the chicken
             Canvas.SetLeft(chicken,100 + (800/20/4) - (800 / 20));
             Canvas.SetTop(chicken, Height/2);
             gameCanvas.Children.Add(chicken);
 
-            // Set up a game timer to update the game state
+
             gameTimer = new DispatcherTimer();
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16); // ~60 FPS
+            gameTimer.Interval = TimeSpan.FromMilliseconds(16); 
             gameTimer.Tick += GameLoop;
             gameTimer.Start();
 
-            // Handle key presses
+            
             this.KeyDown += MainWindow_KeyDown;
+            
         }
 
         // Update the game state in each frame
         private void GameLoop(object sender, EventArgs e)
         {
-            // For now, nothing happens, but this is where you can add animations and game logic
+            if (stepsForward > steps)
+            {
+                MessageBox.Show("Game Over");
+                ChickenCross ckWindow = new ChickenCross();
+                ckWindow.Show();
+                return;
+            }
         }
 
-        // Handle key presses to move the chicken
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             double x = Canvas.GetLeft(chicken);
             double y = Canvas.GetTop(chicken);
             bool a = x < (gameCanvas.Width - chicken.Width);
             if (e.Key == Key.Right && x < (gameCanvas.Width - 100) - chicken.Width)
+            {
                 Canvas.SetLeft(chicken, x + chickenSpeed);
+                chickenCordinate += chickenSpeed;
+                stepsForward += 1;
+                BackgroundUpdate();
+            }
         }
         private void BackgroundUpdate()
         {
-            
+            int cordinate = (chickenCordinate - chickenStarCordinate) / chickenSpeed;
+            if (cordinate >= 1 && cordinate < 21)
+            {
+                var border = new Border();
+
+                var kep = kepek[3];
+                var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/chicken", kep);
+                ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+                border.Background = new ImageBrush(src);
+
+                Grid.SetColumn(border, cordinate);
+                myGrid.Children.Add(border);
+            }
         }
 
         private void BackgroundCreation()
         {
 
-            List<string> kepek = new List<string>()
-            {
-                { "start.jpg" },
-                { "finish.jpg" },
-                { "road.jpg" },
-                { "roadwblock.jpg" },
-                { "orange.jpg" },
-            };
+            
 
             for (int i = 0; i < 22; i++)
             {
-                double[] szorzok = []; 
                 var kep = kepek[1];
                 myGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 x = (x + (i * 0.1))/1.2;
-                szorzok[i] = x;
                 var lable = new Label()
                 {
                     Content = Math.Round(x, 2),
