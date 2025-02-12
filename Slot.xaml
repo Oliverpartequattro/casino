@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="Slot" Height="450" Width="800">
     <Grid Name="CeherrySlot">
-        <!--<Grid.Background>
-            <ImageBrush IageSource="img/slotmachinefurit.jpg" />
-        </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -24,13 +21,13 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Fruit Brush" FontFamily="Showcard Gothic" FontSize="60" FontStyle="Italic" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
 
-            <Border Name="Border1" Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+            <Border Name="Border1" Grid.Row="1" Grid.Column="0"  BorderThickness="2" Margin="60 45 " Padding="10" Background="#FF020202">
                 <TextBlock Opacity="0" x:Name="Reel1" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
-            <Border Name="Border2" BorderBrush="Black" Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+            <Border Name="Border2"  Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 45 " Padding="10" Background="Black">
                     <TextBlock Opacity="0" x:Name="Reel2" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
-            <Border Name="Border3" BorderBrush="Black" Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+            <Border Name="Border3"  Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 45 " Padding="10" Background="Black">
                     <TextBlock Opacity="0" x:Name="Reel3" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
 

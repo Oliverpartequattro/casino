@@ -80,10 +80,21 @@ namespace CasinoSimulator
             if (e.Key == Key.Right && x < (gameCanvas.Width - 100) - chicken.Width)
                 Canvas.SetLeft(chicken, x + chickenSpeed);
         }
-        private void BackgroundCreation()
+        private async void BackgroundCreation()
         {
+
+            List<string> kepek = new List<string>()
+            {
+                { "start.jpg" },
+                { "finish.jpg" },
+                { "road.jpg" },
+                { "roadwblock.jpg" },
+                { "orange.jpg" },
+            };
+
             for (int i = 0; i < 22; i++)
             {
+                var kep = kepek[1];
                 myGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 x = (x + (i * 0.1))/1.2;
                 var lable = new Label()
@@ -92,20 +103,22 @@ namespace CasinoSimulator
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
-                var border = new Border() { Background = Brushes.DimGray };
-                var borderGreen = new Border() { Background = Brushes.DarkOliveGreen };
-                if ((i % 2) == 0){
-                    Grid.SetColumn(border, i);
-                    myGrid.Children.Add(border);
-                }
-                if (i == 0 || i == 21)
-                {
-                    Grid.SetColumn(borderGreen, i);
-                    myGrid.Children.Add(borderGreen);
-                    myGrid.ColumnDefinitions[i].Width = new GridLength(100);
-                }
+                var border = new Border();
+               
+                if (i < 21 && i > 0) { kep = kepek[2]; }
+                if (i == 0) { kep = kepek[0]; myGrid.ColumnDefinitions[i].Width = new GridLength(100); };
+                if (i == 21) { kep = kepek[1]; myGrid.ColumnDefinitions[i].Width = new GridLength(100); };
+
+                    var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/chicken", kep);
+                    ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+                    border.Background = new ImageBrush(src);
+
+                    await Task.Delay(100);
+                Grid.SetColumn(border, i);
+                myGrid.Children.Add(border);
                 if (i > 0 && i < 21 )
                 {
+                    myGrid.ColumnDefinitions[i].Width = new GridLength(800/20);
                     lable.Foreground = Brushes.White;
                     Grid.SetColumn(lable, i);
                     myGrid.Children.Add(lable);
@@ -116,3 +129,30 @@ namespace CasinoSimulator
 
     }
 }
+
+
+//private async Task SpinReel(Border borderNum, TextBlock reel)
+//{
+
+//    List<string> kepek = new List<string>()
+//            {
+//                { "seven.png" },
+//                { "cherry.png" },
+//                { "plum.png" },
+//                { "bell.png" },
+//                { "orange.png" },
+//            };
+//    for (int i = 0; i < 10; i++)
+//    {
+//        var kep = kepek[random.Next(kepek.Count())];
+
+//        var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/slot", kep);
+//        ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+//        borderNum.Background = new ImageBrush(src);
+//        reel.Text = kep;
+//        await Task.Delay(100); // Delay for animation effect
+
+
+
+//    }
+//}

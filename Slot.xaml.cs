@@ -71,11 +71,11 @@ namespace CasinoSimulator
             
             List<string> kepek = new List<string>()
             {
-                { "seven.jpg" },
-                { "cherry.jpg" },
-                { "plum.jpg" },
-                { "bell.jpg" },
-                { "orange.jpg" },
+                { "seven.png" },
+                { "cherry.png" },
+                { "plum.png" },
+                { "bell.png" },
+                { "orange.png" },
             };
             for (int i = 0; i < 10; i++)
             {
