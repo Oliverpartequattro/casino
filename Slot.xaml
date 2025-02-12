@@ -44,7 +44,5 @@
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Grid.Row="2" Text="Bet: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic"/>
         </StackPanel>
-        <Label Name="CherrySlot"/>
-
     </Grid>
 </Window>

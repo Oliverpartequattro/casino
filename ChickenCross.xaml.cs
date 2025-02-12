@@ -31,20 +31,25 @@ namespace CasinoSimulator
                 { "roadwblock.jpg" },
         };
 
+        private double amount = 1;
+        private double credits = 100;
         private Random random = new Random();
         private Rectangle chicken;
         private int chickenSpeed = 40;
         private DispatcherTimer gameTimer;
-        private double x = 1;
+        private double multiplier = 1;
+        private double[] multipliers = {};
         private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20);
         private int chickenStarCordinate = 100 + (800 / 20 / 4) - (800 / 20);
         private int stepsForward = 0;
-        int steps = 2; //random.Next(2,22);
+        int steps = 2;
 
 
         public ChickenCross()
         {
+            steps = random.Next(2, 22);
             InitializeComponent();
+            UpdateBetDisplay();
             BackgroundCreation();
             InitializeGame();
 
@@ -52,6 +57,11 @@ namespace CasinoSimulator
 
         private void InitializeGame()
         {
+            if (credits <= 0)
+            {
+                MessageBox.Show("You're out of credits!", "Game Over");
+                return;
+            }
             chicken = new Rectangle
             {
                 Width = 20,
@@ -59,36 +69,20 @@ namespace CasinoSimulator
                 Fill = Brushes.Yellow
             };
 
-            // Set initial position of the chicken
-            Canvas.SetLeft(chicken,100 + (800/20/4) - (800 / 20));
+            Canvas.SetLeft(chicken, chickenStarCordinate);
             Canvas.SetTop(chicken, Height/2);
             gameCanvas.Children.Add(chicken);
 
-
-            gameTimer = new DispatcherTimer();
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16); 
-            gameTimer.Tick += GameLoop;
-            gameTimer.Start();
-
-            
             this.KeyDown += MainWindow_KeyDown;
-            
-        }
-
-        // Update the game state in each frame
-        private void GameLoop(object sender, EventArgs e)
-        {
-            if (stepsForward > steps)
-            {
-                MessageBox.Show("Game Over");
-                ChickenCross ckWindow = new ChickenCross();
-                ckWindow.Show();
-                return;
-            }
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            if (stepsForward > steps)
+            {
+                CheckRestratGame();
+                return;
+            }
             double x = Canvas.GetLeft(chicken);
             double y = Canvas.GetTop(chicken);
             bool a = x < (gameCanvas.Width - chicken.Width);
@@ -100,6 +94,20 @@ namespace CasinoSimulator
                 BackgroundUpdate();
             }
         }
+        private void CheckRestratGame()
+        {
+            credits -= amount;
+            UpdateCreditsDisplay();
+            if (stepsForward > steps) { MessageBox.Show("Game Over"); }
+            Canvas.SetLeft(chicken, chickenStarCordinate);
+            Canvas.SetTop(chicken, (Height - 50) / 2);
+            stepsForward = 0;
+            multiplier = 1;
+            chickenCordinate = chickenStarCordinate;
+            BackgroundCreation();
+            steps = random.Next(2, 22);
+        }
+
         private void BackgroundUpdate()
         {
             int cordinate = (chickenCordinate - chickenStarCordinate) / chickenSpeed;
@@ -120,19 +128,20 @@ namespace CasinoSimulator
         private void BackgroundCreation()
         {
 
-            
-
             for (int i = 0; i < 22; i++)
             {
                 var kep = kepek[1];
                 myGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                x = (x + (i * 0.1))/1.2;
+                multiplier = (multiplier + (i * 0.1))/1.2;
+                Array.Resize(ref multipliers, multipliers.Length + 1);
+                multipliers[multipliers.Length - 1] = multiplier;
                 var lable = new Label()
                 {
-                    Content = Math.Round(x, 2),
+                    Content = Math.Round(multiplier, 2),
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                 };
+                //lable.Name = $"lbl{i}";
                 var border = new Border();
                
                 if (i < 21 && i > 0) { kep = kepek[2]; }
@@ -154,6 +163,34 @@ namespace CasinoSimulator
                 }
                 
             }
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            int cordinate = (chickenCordinate - chickenStarCordinate) / chickenSpeed;
+            credits += Math.Round(multipliers[cordinate] * amount, 2);
+            CheckRestratGame();
+        }
+
+        private void UpdateCreditsDisplay()
+        {
+            CreditsText.Text = $"Credits: {credits}";
+        }
+        private void UpdateBetDisplay()
+        {
+            BetText.Text = $"Bet: {amount}";
+        }
+
+        private void MinusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amount = amount -= 1;
+            UpdateBetDisplay();
+        }
+
+        private void PlusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amount = amount += 1;
+            UpdateBetDisplay();
         }
     }
 }
