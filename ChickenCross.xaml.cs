@@ -39,12 +39,14 @@ namespace CasinoSimulator
 
         private void InitializeGame()
         {
-            // Initialize the chicken
             chicken = new Rectangle
             {
                 Width = 20,
                 Height = 20,
                 Fill = Brushes.Yellow
+                
+
+
             };
 
 
