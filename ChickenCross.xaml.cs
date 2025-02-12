@@ -28,6 +28,7 @@ namespace CasinoSimulator
         private double chickenSpeed = 800/20;
         private DispatcherTimer gameTimer;
         private double x = 1;
+        private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20);
 
         public ChickenCross()
         {
@@ -82,7 +83,7 @@ namespace CasinoSimulator
         }
         private void BackgroundUpdate()
         {
-
+            
         }
 
         private void BackgroundCreation()
