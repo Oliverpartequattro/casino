@@ -113,7 +113,6 @@ namespace CasinoSimulator
                     ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
                     border.Background = new ImageBrush(src);
 
-                    await Task.Delay(100);
                 Grid.SetColumn(border, i);
                 myGrid.Children.Add(border);
                 if (i > 0 && i < 21 )
