@@ -80,7 +80,12 @@ namespace CasinoSimulator
             if (e.Key == Key.Right && x < (gameCanvas.Width - 100) - chicken.Width)
                 Canvas.SetLeft(chicken, x + chickenSpeed);
         }
-        private async void BackgroundCreation()
+        private void BackgroundUpdate()
+        {
+
+        }
+
+        private void BackgroundCreation()
         {
 
             List<string> kepek = new List<string>()
@@ -94,9 +99,11 @@ namespace CasinoSimulator
 
             for (int i = 0; i < 22; i++)
             {
+                double[] szorzok = []; 
                 var kep = kepek[1];
                 myGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 x = (x + (i * 0.1))/1.2;
+                szorzok[i] = x;
                 var lable = new Label()
                 {
                     Content = Math.Round(x, 2),
@@ -125,33 +132,5 @@ namespace CasinoSimulator
                 
             }
         }
-
     }
 }
-
-
-//private async Task SpinReel(Border borderNum, TextBlock reel)
-//{
-
-//    List<string> kepek = new List<string>()
-//            {
-//                { "seven.png" },
-//                { "cherry.png" },
-//                { "plum.png" },
-//                { "bell.png" },
-//                { "orange.png" },
-//            };
-//    for (int i = 0; i < 10; i++)
-//    {
-//        var kep = kepek[random.Next(kepek.Count())];
-
-//        var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/slot", kep);
-//        ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
-//        borderNum.Background = new ImageBrush(src);
-//        reel.Text = kep;
-//        await Task.Delay(100); // Delay for animation effect
-
-
-
-//    }
-//}
