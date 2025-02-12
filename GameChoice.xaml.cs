@@ -27,6 +27,10 @@ namespace CasinoSimulator
             addImg(0, 2, "img/blackjack.png", 100, 100);
         }
 
+        private void updateBalance(int amount)
+        {
+        }
+
         private void addImg(int row, int column, string path, int width, int height)
         {
             Image img = new Image();
