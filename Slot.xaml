@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
         Title="Slot" Height="450" Width="800">
-    <Grid>
+    <Grid Name="CeherrySlot">
         <!--<Grid.Background>
-            <ImageBrush ImageSource="img/slotmachinefurit.jpg"/>
+            <ImageBrush IageSource="img/slotmachinefurit.jpg" />
         </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,30 +22,32 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Fruit Brush" FontFamily="Comic Sans MS" FontSize="60" FontStyle="Italic" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Fruit Brush" FontFamily="Showcard Gothic" FontSize="60" FontStyle="Italic" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
 
-            <Border Name="Border1" Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="60 50 " Padding="10" Background="White">
-                <TextBlock x:Name="Reel1" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
+            <Border Name="Border1" Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+                <TextBlock Opacity="0" x:Name="Reel1" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
-        <Border BorderBrush="Black" Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 50 " Padding="10" Background="White">
-                <TextBlock x:Name="Reel2" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
+            <Border Name="Border2" BorderBrush="Black" Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+                    <TextBlock Opacity="0" x:Name="Reel2" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
-        <Border BorderBrush="Black" Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 50 " Padding="10" Background="White">
-                <TextBlock x:Name="Reel3" Width="60" Text="?" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
+            <Border Name="Border3" BorderBrush="Black" Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 45 " Padding="10" Background="White">
+                    <TextBlock Opacity="0" x:Name="Reel3" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
             </Border>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click"/>
-            <Button x:Name="ResetButton" Content="Reset" FontSize="24" Padding="10" Margin="10" Click="ResetButton_Click"/>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click" Background="Black" Foreground="White"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Padding="10" Click="PlusButton_Click" Height="70" Width="70"/>
-            <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="10"  Click="MinusButton_Click" Height="65" Width="65"/>
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Padding="10" Click="PlusButton_Click" Height="70" Width="70" Background="Black" Foreground="White" VerticalAlignment="Center"/>
+            <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="10"  Click="MinusButton_Click" Height="65" Width="65" Foreground="White" Background="Black" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="CreditsText" FontSize="24" HorizontalAlignment="Right" Margin="10"/>
-            <TextBlock Grid.Row="2" Text="Bet: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="CreditsText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic"/>
         </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="2" Text="Bet: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic"/>
+        </StackPanel>
+        <Label Name="CherrySlot"/>
 
     </Grid>
 </Window>
