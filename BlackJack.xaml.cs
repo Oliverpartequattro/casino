@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Printing;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CasinoSimulator
 {
@@ -12,32 +14,56 @@ namespace CasinoSimulator
         private List<Card> dealerCards;
         private List<Card> playerCards;
         private List<Card> allCards;
-        private int playerScore;
-        private int dealerScore;
+        private int balance;
+        private int betAmount;
 
         public BlackJack()
         {
             InitializeComponent();
-            allCards = InitCards(); 
+            allCards = InitCards();
             dealerCards = new List<Card>();
             playerCards = new List<Card>();
-
+            balance = 10000;
+            BettingScreen();
             DealCards();
         }
 
         private List<Card> InitCards()
         {
-            string[] rows = File.ReadAllLines("data/cards.csv"); 
-            return rows.Select(row => new Card(row)).ToList(); 
+            string[] rows = File.ReadAllLines("data/cards.csv");
+            return rows.Select(row => new Card(row)).ToList();
+        }
+
+        private void BettingScreen()
+        {
+            while (true)
+            {
+                string input = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Add meg a Tétet:",
+                    "Tét",
+                    "100",
+                    -1, -1
+                );
+
+                if (int.TryParse(input, out int newBet) && newBet > 0 && newBet <= balance)
+                {
+                    betAmount = newBet;
+                    txtBalance.Text = balance.ToString();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Érvénytelen Tét! Próbáld újra.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void DealCards()
         {
             playerCards.Add(DrawCard());
-            playerCards.Add(DrawCard()); 
+            playerCards.Add(DrawCard());
             dealerCards.Add(DrawCard());
             dealerCards.Add(DrawCard());
-
             UpdateUI();
         }
 
@@ -45,32 +71,59 @@ namespace CasinoSimulator
         {
             txtPlayerPoints.Text = $"Pont: {CalculateScore(playerCards)}";
             txtDealerPoints.Text = $"Pont: {CalculateScore(dealerCards)}";
-
-            txtPlayerCards.Text = "Játékos kártyák: " + string.Join(", ", playerCards.Select(c => c.Value));
-            txtDealerCards.Text = "Dealer kártyák: " + string.Join(", ", dealerCards.Select(c => c.Value));
+            txtBalance.Text = balance.ToString();
+            DisplayCards();
         }
+
+        private void DisplayCards()
+        {
+            playerCardsPanel.Children.Clear();
+            dealerCardsPanel.Children.Clear();
+
+            foreach (var card in playerCards)
+            {
+                var image = new Image
+                {
+                    Source = new BitmapImage(new Uri(card.Img, UriKind.RelativeOrAbsolute)),
+                    Width = 100,
+                    Height = 150,
+                    Stretch = Stretch.Uniform, 
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                playerCardsPanel.Children.Add(image);
+            }
+
+            foreach (var card in dealerCards)
+            {
+                var image = new Image
+                {
+                    Source = new BitmapImage(new Uri(card.Img, UriKind.RelativeOrAbsolute)),
+                    Width = 100,
+                    Height = 150,
+                    Stretch = Stretch.Uniform,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                dealerCardsPanel.Children.Add(image);
+            }
+        }
+
 
         private int CalculateScore(List<Card> cards)
         {
-            int score = 0;
-            foreach (var card in cards)
-            {
-                score += card.Value;
-            }
-            return score;
+            return cards.Sum(card => card.Value);
         }
 
         private void BtnHit_Click(object sender, RoutedEventArgs e)
         {
-            playerCards.Add(DrawCard()); 
+            playerCards.Add(DrawCard());
             UpdateUI();
-
             if (CalculateScore(playerCards) > 21)
             {
                 MessageBox.Show("Túlment 21-en!");
                 DealerTurn();
             }
         }
+
         private void BtnStand_Click(object sender, RoutedEventArgs e)
         {
             DealerTurn();
@@ -78,33 +131,47 @@ namespace CasinoSimulator
 
         private void DealerTurn()
         {
-            while (CalculateScore(dealerCards) < 17) 
+            while (CalculateScore(dealerCards) < 17)
             {
                 dealerCards.Add(DrawCard());
                 UpdateUI();
             }
+            DetermineWinner();
+        }
 
+        private void DetermineWinner()
+        {
             int playerFinalScore = CalculateScore(playerCards);
             int dealerFinalScore = CalculateScore(dealerCards);
+            string message;
+            string title;
 
             if (playerFinalScore > 21)
             {
-                EndGame("Túlment 21-en! Új játék?", "Vereség");
+                balance -= betAmount;
+                message = "Túlment 21-en! Új játék?";
+                title = "Vereség";
             }
             else if (dealerFinalScore > 21 || playerFinalScore > dealerFinalScore)
             {
-                EndGame("Dealer veszített! Új játék?", "Győzelem");
-
+                balance += betAmount * 2;
+                message = "Dealer veszített! Új játék?";
+                title = "Győzelem";
             }
             else if (dealerFinalScore > playerFinalScore)
             {
-                EndGame("Dealer nyert! Új játék?", "Vereség");
+                balance -= betAmount;
+                message = "Dealer nyert! Új játék?";
+                title = "Vereség";
             }
             else
             {
-                EndGame("Döntetlen! Új játék?", "Vereség");
-
+                message = "Döntetlen! Új játék?";
+                title = "Döntetlen";
             }
+
+            txtBalance.Text = balance.ToString();
+            EndGame(message, title);
         }
 
         private Card DrawCard()
@@ -116,11 +183,7 @@ namespace CasinoSimulator
 
         private void EndGame(string message, string title)
         {
-            string boxMessage = message;
-            string boxTitle = title;
-
             MessageBoxResult result = MessageBox.Show(message, title, MessageBoxButton.YesNo);
-
             if (result == MessageBoxResult.Yes)
             {
                 ResetGame();
@@ -129,16 +192,28 @@ namespace CasinoSimulator
             {
                 GameChoice gCWindow = new GameChoice();
                 gCWindow.Show();
-
                 this.Close();
             }
         }
 
         private void ResetGame()
         {
+            if (balance <= 0)
+            {
+                MessageBox.Show("Elfogyott a pénzed!", "Játék vége", MessageBoxButton.OK, MessageBoxImage.Warning);
+                GameChoice gCWindow = new GameChoice();
+                gCWindow.Show();
+                this.Close();
+                return;
+            }
             playerCards.Clear();
             dealerCards.Clear();
             DealCards();
+        }
+
+        private void BtnNewBet_Click(object sender, RoutedEventArgs e)
+        {
+            BettingScreen();
         }
     }
 }
