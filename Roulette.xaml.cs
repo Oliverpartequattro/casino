@@ -195,16 +195,20 @@ namespace CasinoSimulator
                          "14", "31", "9", "22", "18", "29", "7", "28", "12", "35", "3", "26", "0", "32", "15",
                          "19", "4", "21", "2", "25", "17", "34" };
 
-            int currentStep = 0;
+            string[] numbersCalc = { "0", "32", "15", "19", "4", "21", "2", "25", "17", "34", "6", "27", "13", "36", "11",
+                         "30", "8", "23", "10", "5", "24", "16", "33", "1", "20", "14", "31", "9", "22", "18",
+                         "29", "7", "28", "12", "35", "3", "26" };
+
+            int currentStep = 27;
 
             // Pre-calculate the winning number
             int winningNumberIndex = random.Next(0, 37);
             string winningNumber = numbers[winningNumberIndex];
             // Calculate the target rotation angle
             double angleStep = 360.0 / numbers.Length;
-            double targetAngle = int.Parse(winningNumber) * angleStep;
+            double targetAngle = winningNumberIndex * angleStep;
             double currentAngle = currentStep * angleStep;
-            double totalRotation = 360 * 5 + (360 - currentAngle) + targetAngle; // Add multiple spins for effect
+            double totalRotation = 360 * 5 + (360 + currentAngle) - targetAngle; // Add multiple spins for effect
 
             // Define the spin animation
             var animation = new DoubleAnimation(0, totalRotation, new Duration(TimeSpan.FromSeconds(5)))
@@ -229,7 +233,7 @@ namespace CasinoSimulator
             }
             else { currentBet = 0; }
             UpdateUI();
-            //currentStep = int.Parse(numbers[winningNumberIndex]);
+            currentStep = int.Parse(numbers[winningNumberIndex]);
         }
 
 
