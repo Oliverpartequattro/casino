@@ -25,13 +25,24 @@ namespace CasinoSimulator
 
         private void DrawRouletteWheel()
         {
-            string[] numbers = { "0", "32", "15", "19", "4", "21", "2", "25", "17", "34", "6", "27", "13", "36", "11",
-                         "30", "8", "23", "10", "5", "24", "16", "33", "1", "20", "14", "31", "9", "22", "18",
-                         "29", "7", "28", "12", "35", "3", "26" };
+            //string[] numbers = { "0", "32", "15", "19", "4", "21", "2", "25", "17", "34", "6", "27", "13", "36", "11",
+            //             "30", "8", "23", "10", "5", "24", "16", "33", "1", "20", "14", "31", "9", "22", "18",
+            //             "29", "7", "28", "12", "35", "3", "26" };
 
-            string[] colors = { "Green", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red",
+            string[] numbers = { "6", "27", "13", "36", "11", "30", "8", "23", "10", "5", "24", "16", "33", "1", "20",
+                         "14", "31", "9", "22", "18", "29", "7", "28", "12", "35", "3", "26", "0", "32", "15",
+                         "19", "4", "21", "2", "25", "17", "34" };
+
+            //string[] colors = { "Green", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red",
+            //            "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black",
+            //            "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black" };
+
+            string[] colors = { "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red",
                         "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black",
-                        "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black" };
+                        "Red", "Black", "Red", "Black", "Green", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red" };
+
+
+
 
             double angleStep = 360.0 / numbers.Length;
             double radius = 200;
@@ -102,11 +113,11 @@ namespace CasinoSimulator
             {
                 Width = 15,
                 Height = 15,
-                Fill = Brushes.White
+                Fill = Brushes.White,
             };
-            Canvas.SetLeft(ball, radius - 7.5);
-            Canvas.SetTop(ball, radius - 7.5);
-            wheelContainer.Children.Add(ball);
+            Canvas.SetLeft(ball, 185);
+            Canvas.SetTop(ball, 50);
+            ballContainer.Children.Add(ball);
 
             // Apply rotation transform to the wheel container
             var rotateTransform = new RotateTransform();
@@ -115,8 +126,6 @@ namespace CasinoSimulator
             // Add the wheel container to the canvas
             rouletteWheel.Children.Add(wheelContainer);
         }
-
-
 
         private void DrawBettingTable()
         {
@@ -176,26 +185,53 @@ namespace CasinoSimulator
 
         private void StartWheel_Click(object sender, RoutedEventArgs e)
         {
-            // Spin the wheel
+            // Reset the wheel and ball position
             var rotateTransform = new RotateTransform();
             rouletteWheel.RenderTransform = rotateTransform;
             rouletteWheel.RenderTransformOrigin = new Point(0.5, 0.5);
-            var animation = new DoubleAnimation(0, 360 * 5 + random.Next(0, 360), new Duration(TimeSpan.FromSeconds(10)))
+
+            // Define the numbers on the wheel
+            string[] numbers = { "6", "27", "13", "36", "11", "30", "8", "23", "10", "5", "24", "16", "33", "1", "20",
+                         "14", "31", "9", "22", "18", "29", "7", "28", "12", "35", "3", "26", "0", "32", "15",
+                         "19", "4", "21", "2", "25", "17", "34" };
+
+            int currentStep = 0;
+
+            // Pre-calculate the winning number
+            int winningNumberIndex = random.Next(0, 37);
+            string winningNumber = numbers[winningNumberIndex];
+            // Calculate the target rotation angle
+            double angleStep = 360.0 / numbers.Length;
+            double targetAngle = int.Parse(winningNumber) * angleStep;
+            double currentAngle = currentStep * angleStep;
+            double totalRotation = 360 * 5 + (360 - currentAngle) + targetAngle; // Add multiple spins for effect
+
+            // Define the spin animation
+            var animation = new DoubleAnimation(0, totalRotation, new Duration(TimeSpan.FromSeconds(5)))
             {
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
             };
+
+            // Start the wheel spin animation
             rotateTransform.BeginAnimation(RotateTransform.AngleProperty, animation);
-            animation.Completed += (s, _) => CalculateResult();
+
+            // Handle animation completion
+            animation.Completed += (s, _) =>
+            {
+                // Display the winning number
+            };
+                MessageBox.Show($"Winning number is: {winningNumber}");
+
+
+            if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
+            {
+                balance += (currentBet * 36);
+            }
+            else { currentBet = 0; }
+            UpdateUI();
+            //currentStep = int.Parse(numbers[winningNumberIndex]);
         }
 
-        private void CalculateResult()
-        {
-            // Calculate the winning number
-            int winningNumber = random.Next(0, 37);
-            MessageBox.Show($"Winning number is: {winningNumber}");
-            // Check if the player won
-            // Add logic for payouts here...
-        }
 
         private void UpdateUI()
         {

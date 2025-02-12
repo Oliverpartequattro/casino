@@ -4,8 +4,14 @@
         Title="Roulette" Height="800" Width="1600" Background="#2E2E2E">
     <Grid>
         <!-- Roulette Wheel -->
+
+
+
         <Canvas Name="rouletteWheel" Width="400" Height="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,50,0,0">
             <!-- Wheel sections and ball are generated dynamically in the code-behind -->
+        </Canvas>
+        <Canvas Name="ballContainer" Width="400" Height="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,50,0,0">
+            
         </Canvas>
 
         <!-- Betting Table -->
