@@ -37,7 +37,7 @@ namespace CasinoSimulator
         private Rectangle chicken;
         private int chickenSpeed = 40;
         private DispatcherTimer gameTimer;
-        private double multiplier = 1;
+        private double multiplier = 0.25;
         private double[] multipliers = {};
         private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20);
         private int chickenStarCordinate = 100 + (800 / 20 / 4) - (800 / 20);
@@ -72,17 +72,12 @@ namespace CasinoSimulator
             Canvas.SetLeft(chicken, chickenStarCordinate);
             Canvas.SetTop(chicken, Height/2);
             gameCanvas.Children.Add(chicken);
-
+            
             this.KeyDown += MainWindow_KeyDown;
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (stepsForward > steps)
-            {
-                CheckRestratGame();
-                return;
-            }
             double x = Canvas.GetLeft(chicken);
             double y = Canvas.GetTop(chicken);
             bool a = x < (gameCanvas.Width - chicken.Width);
@@ -93,16 +88,27 @@ namespace CasinoSimulator
                 stepsForward += 1;
                 BackgroundUpdate();
             }
+            if (stepsForward > steps)
+            {
+                CheckRestratGame();
+                return;
+            }
+            if (stepsForward == 21)
+            {
+                CheckRestratGame();
+                return;
+            }
         }
         private void CheckRestratGame()
         {
             credits -= amount;
             UpdateCreditsDisplay();
+            if (stepsForward == 21) { MessageBox.Show("Winner"); credits += amount * 10; }
             if (stepsForward > steps) { MessageBox.Show("Game Over"); }
             Canvas.SetLeft(chicken, chickenStarCordinate);
             Canvas.SetTop(chicken, (Height - 50) / 2);
             stepsForward = 0;
-            multiplier = 1;
+            multiplier = 0.25;
             chickenCordinate = chickenStarCordinate;
             BackgroundCreation();
             steps = random.Next(2, 22);
@@ -132,7 +138,7 @@ namespace CasinoSimulator
             {
                 var kep = kepek[1];
                 myGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                multiplier = (multiplier + (i * 0.1))/1.2;
+                multiplier = multiplier * 1.2;
                 Array.Resize(ref multipliers, multipliers.Length + 1);
                 multipliers[multipliers.Length - 1] = multiplier;
                 var lable = new Label()
@@ -168,13 +174,13 @@ namespace CasinoSimulator
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             int cordinate = (chickenCordinate - chickenStarCordinate) / chickenSpeed;
-            credits += Math.Round(multipliers[cordinate] * amount, 2);
+            credits += multipliers[cordinate] * amount;
             CheckRestratGame();
         }
 
         private void UpdateCreditsDisplay()
         {
-            CreditsText.Text = $"Credits: {credits}";
+            CreditsText.Text = $"Credits: {Math.Round(credits, 2)}";
         }
         private void UpdateBetDisplay()
         {
