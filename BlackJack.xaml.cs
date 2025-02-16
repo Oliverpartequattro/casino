@@ -23,7 +23,7 @@ namespace CasinoSimulator
             allCards = InitCards();
             dealerCards = new List<Card>();
             playerCards = new List<Card>();
-            balance = 10000;
+            balance = Login.CurrentUser?.Balance ?? 0;
             BettingScreen();
             DealCards();
         }

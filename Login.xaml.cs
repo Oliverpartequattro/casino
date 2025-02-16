@@ -101,9 +101,12 @@ namespace CasinoSimulator
                     gameChoiceWindow.Show();
                     this.Close();
                 }
+                else
+                {
+                    MessageBox.Show("Hibás felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
-            MessageBox.Show("Hibás felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
     }
