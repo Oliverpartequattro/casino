@@ -36,25 +36,16 @@ namespace CasinoSimulator
 
         private void BettingScreen()
         {
-            while (true)
+            BettingWindow bettingWindow = new BettingWindow(balance);
+            if (bettingWindow.ShowDialog() == true)
             {
-                string input = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Add meg a Tétet:",
-                    "Tét",
-                    "100",
-                    -1, -1
-                );
-
-                if (int.TryParse(input, out int newBet) && newBet > 0 && newBet <= balance)
-                {
-                    betAmount = newBet;
-                    txtBalance.Text = balance.ToString();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Érvénytelen Tét! Próbáld újra.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                betAmount = bettingWindow.BetAmount;
+                balance -= betAmount; 
+                txtBalance.Text = balance.ToString(); 
+            }
+            else
+            {
+                Close(); 
             }
         }
 
@@ -71,8 +62,17 @@ namespace CasinoSimulator
         {
             txtPlayerPoints.Text = $"Pont: {CalculateScore(playerCards)}";
             txtDealerPoints.Text = $"Pont: {CalculateScore(dealerCards)}";
-            txtBalance.Text = balance.ToString();
-            DisplayCards();
+            if(balance <= 0)
+            {
+                txtBalance.Text = "0";
+                DisplayCards();
+            }
+            else
+            {
+                txtBalance.Text = balance.ToString();
+                DisplayCards();
+            }
+
         }
 
         private void DisplayCards()
@@ -80,12 +80,12 @@ namespace CasinoSimulator
             playerCardsPanel.Children.Clear();
             dealerCardsPanel.Children.Clear();
 
-            foreach (var card in playerCards)
+            foreach (Card card in playerCards)
             {
                 ImageAdder.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
 
-            foreach (var card in dealerCards)
+            foreach (Card card in dealerCards)
             {
                 ImageAdder.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }

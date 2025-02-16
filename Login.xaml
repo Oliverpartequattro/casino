@@ -12,7 +12,7 @@
         <TabControl>
             
             <!-- Login Tab -->
-            <TabItem Header="Login">
+            <TabItem Header="Bejelentkezés">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -20,18 +20,18 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Username:" />
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" />
+                    <Label Grid.Row="0" Content="Felhasználónév:"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" Margin="0 20 0 0" />
 
-                    <Label Grid.Row="1" Content="Password:" />
-                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" />
+                    <Label Grid.Row="1" Content="Jelszó:" />
+                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" Margin="0 20 0 0"/>
 
                     <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Login" Click="LoginButton_Click" />
                 </Grid>
             </TabItem>
             
             <!-- Registration Tab -->
-            <TabItem Header="Register">
+            <TabItem Header="Regisztráció">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -41,16 +41,16 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Username:" />
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Felhasználónév:" />
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" Margin="0 20 0 0"/>
 
-                    <Label Grid.Row="1" Content="Age:" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" />
+                    <Label Grid.Row="1" Content="Kor:" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" Margin="0 20 0 0"/>
+                    
+                    <Label Grid.Row="2" Content="Jelszó:" />
+                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" Margin="0 20 0 0"/>
 
-                    <Label Grid.Row="2" Content="Password:" />
-                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" />
-
-                    <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Register" Click="RegisterButton_Click" />
+                    <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Regisztráció" Click="RegisterButton_Click" />
                 </Grid>
             </TabItem>
 

@@ -16,6 +16,7 @@
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
+
     </Window.Resources>
 
     <Grid Background="#069E2D">
@@ -32,16 +33,16 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="txtPlayerPoints" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Foreground="White" />
-        <StackPanel Name="playerCardsPanel" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Name="playerCardsPanel" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500">
         </StackPanel>
 
         <TextBlock Name="txtDealerPoints" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Foreground="White" />
-        <StackPanel Name="dealerCardsPanel" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Name="dealerCardsPanel" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500">
         </StackPanel>
 
         <Button Name="btnHit" Content="Hit" Grid.Row="2" Grid.Column="0" Margin="10" HorizontalAlignment="Center" Click="BtnHit_Click"/>
         <Button Name="btnStand" Content="Stand" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalAlignment="Center" Click="BtnStand_Click"/>
-        <Button Name="btnNewBet" Content="New Bet" Grid.Row="2" Grid.Column="2" Margin="10" HorizontalAlignment="Center" Click="BtnNewBet_Click"/>
+        <Button Name="btnNewBet" Content="Új Tét" Grid.Row="2" Grid.Column="2" Margin="10" HorizontalAlignment="Center" Click="BtnNewBet_Click"/>
 
         <Border BorderBrush="#EFA00B" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="2" CornerRadius="10" Padding="10" Background="#069E2D" Grid.Row="0" Grid.Column="3" Height="40" Width="160" Margin="5 5 5 5">
             <TextBlock Name="txtBalance" Text="Egyenleg: 111.111 Ft" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Brush Script MT" FontSize="17"/>

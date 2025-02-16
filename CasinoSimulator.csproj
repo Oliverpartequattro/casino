@@ -12,6 +12,9 @@
     <None Update="data\cards.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="data\users.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="img\blackjack oldal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

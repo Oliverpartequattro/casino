@@ -20,48 +20,65 @@ namespace CasinoSimulator
     /// </summary>
     public partial class Login : Window
     {
-        private readonly string csvFilePath = "users.csv";
 
-        // Static property to store the current user
-        public static string CurrentUser { get; private set; }
-
+        private List<User> users;
+        public static User CurrentUser { get; set; }
         public Login()
         {
+            users = InitUsers();
             InitializeComponent();
-            if (!File.Exists(csvFilePath))
-            {
-                File.WriteAllText(csvFilePath, "userName;registrationDate;age;password\n");
-            }
+            CurrentUser = null;
         }
 
-        public Login(string currentUser)
+        private List<User> InitUsers()
         {
-            InitializeComponent();
-            CurrentUser = currentUser;
+            string[] rows = File.ReadAllLines("data/users.csv");
+            return rows.Select(row => new User(row)).ToList();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             string username = RegisterUsername.Text;
-            string ageText = RegisterAge.Text;
+            string ageTxt = RegisterAge.Text;
             string password = RegisterPassword.Password;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ageText) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ageTxt) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("All fields are required.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Minden mezőt ki kell tölteni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (!int.TryParse(ageText, out int age))
+            if (!int.TryParse(ageTxt, out int age))
             {
-                MessageBox.Show("Age must be a number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Az életkornak egy számnak kell lennie!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            string newUserLine = $"{username};{DateTime.Now:yyyy-MM-dd};{age};{password};10000";
-            File.AppendAllText(csvFilePath, newUserLine + "\n");
-            MessageBox.Show("Registration successful.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            string newUserRow = $"{username};{age};{password};{1000}";
+
+            if (!File.Exists("data/users.csv"))
+            {
+                using (StreamWriter sw = new StreamWriter("data/users.csv"))
+                {
+                    sw.WriteLine(newUserRow);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = new StreamWriter("data/users.csv", false))
+                {
+                    sw.WriteLine(newUserRow);
+                }
+            }
+
+            MessageBox.Show("Sikeres regisztráció!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
+            RegisterUsername.Clear();
+            RegisterAge.Clear();
+            RegisterPassword.Clear();
+
+            users = InitUsers();
         }
+
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -70,25 +87,24 @@ namespace CasinoSimulator
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("All fields are required.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Minden mezőt ki kell tölteni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            string[] users = File.ReadAllLines(csvFilePath);
             foreach (var user in users)
             {
-                string[] parts = user.Split(';');
-                if (parts[0] == username && parts[3] == password)
+                if (user.Username == username && user.Password == password)
                 {
-                    // Store the current user when login is successful
-                    CurrentUser = username;
-
-                    MessageBox.Show("Login successful.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
+                    Login.CurrentUser = user;
+                    MessageBox.Show("Sikeres bejelentkezés!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
+                    GameChoice gameChoiceWindow = new GameChoice();
+                    gameChoiceWindow.Show();
+                    this.Close();
                 }
             }
 
-            MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("Hibás felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
     }
 }
