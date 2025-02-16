@@ -82,30 +82,15 @@ namespace CasinoSimulator
 
             foreach (var card in playerCards)
             {
-                var image = new Image
-                {
-                    Source = new BitmapImage(new Uri(card.Img, UriKind.RelativeOrAbsolute)),
-                    Width = 100,
-                    Height = 150,
-                    Stretch = Stretch.Uniform, 
-                    HorizontalAlignment = HorizontalAlignment.Center
-                };
-                playerCardsPanel.Children.Add(image);
+                ImageAdder.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
 
             foreach (var card in dealerCards)
             {
-                var image = new Image
-                {
-                    Source = new BitmapImage(new Uri(card.Img, UriKind.RelativeOrAbsolute)),
-                    Width = 100,
-                    Height = 150,
-                    Stretch = Stretch.Uniform,
-                    HorizontalAlignment = HorizontalAlignment.Center
-                };
-                dealerCardsPanel.Children.Add(image);
+                ImageAdder.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
         }
+
 
 
         private int CalculateScore(List<Card> cards)

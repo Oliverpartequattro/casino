@@ -35,29 +35,25 @@
         </Grid.ColumnDefinitions>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="0" Margin="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgBlackjack" Width="100" Height="100" HorizontalAlignment="Center"/>
+            <StackPanel Name="stackBlackjack" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="btnBlackjack" Content="Blackjack" Click="btnBlackjack_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="1" Margin="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgRoulette" Width="100" Height="100" Grid.Row="1" Grid.Column="1"/>
+            <StackPanel Name="stackRoulette" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="btnRoulette" Content="Roulette" Click="btnRoulette_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="2" Margin="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgSlot" Width="100" Height="100" Grid.Row="1" Grid.Column="2"/>
+            <StackPanel Name="stackSlot" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="btnSlot" Content="Slot" Click="btnSlot_Click"/>
             </StackPanel>
         </Border>
 
         <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10" Background="#525252" Grid.Row="1" Grid.Column="3" Margin="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="imgCross" Width="100" Height="100" Grid.Row="1" Grid.Column="3"/>
+            <StackPanel Name="stackChicken" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="btnCross" Content="Chicken Cross" Click="btnCross_Click"/>
             </StackPanel>
         </Border>

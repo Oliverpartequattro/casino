@@ -22,30 +22,12 @@ namespace CasinoSimulator
         public GameChoice()
         {
             InitializeComponent();
-            addImg(0, 0, "img/blackjack.png", 100, 100);
-            addImg(0, 1, "img/blackjack.png", 100, 100);
-            addImg(0, 2, "img/blackjack.png", 100, 100);
-        }
+            ImageAdder.AddImageStackPanel(stackBlackjack, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
+            ImageAdder.AddImageStackPanel(stackRoulette, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
+            ImageAdder.AddImageStackPanel(stackSlot, 0, 0, "blackjack.png", 100, 100, "img/", 0, 0, 10, 0);
+            ImageAdder.AddImageStackPanel(stackChicken, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
 
-        private void updateBalance(int amount)
-        {
-        }
 
-        private void addImg(int row, int column, string path, int width, int height)
-        {
-            Image img = new Image();
-
-            img.Source = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
-
-            img.Width = width;
-            img.Height = height;
-
-            Grid.SetRow(img, row);
-            Grid.SetColumn(img,column);
-
-            img.Margin = new Thickness(5);
-
-            g.Children.Add(img);
         }
 
         private void btnBlackjack_Click(object sender, RoutedEventArgs e)
