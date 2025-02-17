@@ -24,9 +24,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TabControl Background="#525252">
+        <TabControl Background="#525252" BorderBrush="#EFA00B" BorderThickness="2">
 
-            <TabItem Background="#525252" Foreground="White" FontFamily="Brush Script MT" Header="Bejelentkezés">
+            <TabItem Background="#525252" BorderBrush="#EFA00B" BorderThickness="2" Foreground="White" FontFamily="Brush Script MT" Header="Bejelentkezés">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -35,16 +35,19 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Foreground="White" Content="Felhasználónév:"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" Margin="0 35 0 0" />
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" Margin="0 35 0 0"
+         BorderBrush="#EFA00B" BorderThickness="2"/>
 
                     <Label Grid.Row="1" Foreground="White" Content="Jelszó:" />
-                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" Margin="0 35 0 0"/>
+                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" Margin="0 35 0 0"
+             BorderBrush="#EFA00B" BorderThickness="2"/>
+
 
                     <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Bejelentkezés" Click="LoginButton_Click" />
                 </Grid>
             </TabItem>
 
-            <TabItem Background="#525252" Foreground="White" FontFamily="Brush Script MT" Header="Regisztráció">
+            <TabItem Background="#525252" BorderBrush="#EFA00B" BorderThickness="2" Foreground="White" FontFamily="Brush Script MT" Header="Regisztráció">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -55,13 +58,15 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Foreground="White" Text="Felhasználónév:" />
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" Margin="0 30 0 0"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" Margin="0 30 0 0"
+         BorderBrush="#EFA00B" BorderThickness="2"/>
 
                     <Label Grid.Row="1" Foreground="White" Content="Kor:" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" Margin="0 30 0 0"/>
-
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" Margin="0 30 0 0"
+         BorderBrush="#EFA00B" BorderThickness="2"/>
                     <Label Grid.Row="2" Foreground="White" Content="Jelszó:" />
-                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" Margin="0 30 0 0"/>
+                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" Margin="0 30 0 0"
+             BorderBrush="#EFA00B" BorderThickness="2"/>
 
                     <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Regisztráció" Click="RegisterButton_Click" />
                 </Grid>
