@@ -10,7 +10,7 @@ namespace CasinoSimulator
 {
     public partial class Roulette : Window
     {
-        private int balance = 2800;
+        private int balance = Login.CurrentUser?.Balance ?? 0;
         private int currentBet = 0;
         private readonly Random random = new Random();
         private Button selectedBetButton;
@@ -21,6 +21,7 @@ namespace CasinoSimulator
             InitializeComponent();
             DrawRouletteWheel();
             DrawBettingTable();
+            UpdateUI();
         }
 
         private void DrawRouletteWheel()
@@ -139,8 +140,8 @@ namespace CasinoSimulator
             for (int i = 0; i < 13; i++)
                 bettingTable.ColumnDefinitions.Add(new ColumnDefinition());
 
-            string[] numbers = { "3", "2", "1", "6", "5", "4", "9", "8", "7", "12", "11", "10", "15", "14", "13", "18", "17", "16", "21", "20", "19", "24", "23", "22", "27", "26", "25", "30", "29", "28", "33", "32", "31", "36", "35", "34", "0"};
-            string[] colors = { "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Green"};
+            string[] numbers = { "3", "2", "1", "6", "5", "4", "9", "8", "7", "12", "11", "10", "15", "14", "13", "18", "17", "16", "21", "20", "19", "24", "23", "22", "27", "26", "25", "30", "29", "28", "33", "32", "31", "36", "35", "34", "0" };
+            string[] colors = { "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Green" };
 
             for (int i = 0; i < numbers.Length; i++)
             {
@@ -178,13 +179,26 @@ namespace CasinoSimulator
                 return;
             }
 
-            currentBet += 100; // Example fixed bet
-            balance -= 100;
+            currentBet = 100; // Example fixed bet
             UpdateUI();
         }
 
         private void StartWheel_Click(object sender, RoutedEventArgs e)
         {
+            if (currentBet == 0)
+            {
+                MessageBox.Show("Bet before playing!");
+            }
+            else if (currentBet > balance)
+            {
+                MessageBox.Show("You don't have enough balance for this bet!");
+            }
+            else { StartWheel_ClickCheck(sender, e); }
+        }
+
+        private void StartWheel_ClickCheck(object sender, RoutedEventArgs e)
+        {
+
             // Reset the wheel and ball position
             var rotateTransform = new RotateTransform();
             rouletteWheel.RenderTransform = rotateTransform;
@@ -223,15 +237,15 @@ namespace CasinoSimulator
             animation.Completed += (s, _) =>
             {
                 // Display the winning number
-            };
                 MessageBox.Show($"Winning number is: {winningNumber}");
+            };
 
 
             if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
             {
                 balance += (currentBet * 36);
             }
-            else { currentBet = 0; }
+            else { balance -= currentBet; }
             UpdateUI();
             currentStep = int.Parse(numbers[winningNumberIndex]);
         }
@@ -244,5 +258,41 @@ namespace CasinoSimulator
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void PlaceBetCustom_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedBetButton == null || balance <= 0)
+            {
+                MessageBox.Show("Please select a valid bet or check your balance!");
+                return;
+            }
+
+            string input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Enter the amount you want to bet:",
+                "Custom Bet",
+                "");
+
+            if (int.TryParse(input, out int betAmount))
+            {
+                if (betAmount <= 0)
+                {
+                    MessageBox.Show("Please enter a positive amount!");
+                }
+                else if (betAmount > balance)
+                {
+                    MessageBox.Show("You don't have enough balance for this bet!");
+                }
+                else
+                {
+                    currentBet += betAmount;
+                    UpdateUI();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid input! Please enter a numeric value.");
+            }
+        }
+
     }
 }
