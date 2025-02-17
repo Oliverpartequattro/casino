@@ -33,12 +33,14 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="txtPlayerPoints" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Foreground="White" />
-        <StackPanel Name="playerCardsPanel" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500">
-        </StackPanel>
+        <ScrollViewer Grid.Row="0" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Height="150">
+            <StackPanel Name="playerCardsPanel" Orientation="Horizontal"/>
+        </ScrollViewer>
 
         <TextBlock Name="txtDealerPoints" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Foreground="White" />
-        <StackPanel Name="dealerCardsPanel" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500">
-        </StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Height="150">
+            <StackPanel Name="dealerCardsPanel" Orientation="Horizontal"/>
+        </ScrollViewer>
 
         <Button Name="btnHit" Content="Hit" Grid.Row="2" Grid.Column="0" Margin="10" HorizontalAlignment="Center" Click="BtnHit_Click"/>
         <Button Name="btnStand" Content="Stand" Grid.Row="2" Grid.Column="1" Margin="10" HorizontalAlignment="Center" Click="BtnStand_Click"/>

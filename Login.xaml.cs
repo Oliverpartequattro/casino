@@ -22,6 +22,7 @@ namespace CasinoSimulator
     {
 
         private List<User> users;
+        private bool isSuccessful = false;
         public static User CurrentUser { get; set; } = null;
         public Login()
         {
@@ -56,6 +57,12 @@ namespace CasinoSimulator
             if (int.Parse(ageTxt) < 18)
             {
                 new ErrorBox("Legalább 18 évesnek kell lenned!", "Te majom", true).ShowDialog();
+                return;
+            }
+
+            if(users.Any(user => user.Username == username))
+            {
+                new ErrorBox("Ez a felhasználónév már foglalt!", "Erről lecsúsztál", true).ShowDialog();
                 return;
             }
 
@@ -100,6 +107,7 @@ namespace CasinoSimulator
             {
                 if (user.Username == username && user.Password == password)
                 {
+                    isSuccessful = true;
                     Login.CurrentUser = user;
                     new ErrorBox("Sikeres bejelentkezés!", "Csak sikerült", false).ShowDialog();
                     GameChoice gameChoiceWindow = new GameChoice();
@@ -107,8 +115,13 @@ namespace CasinoSimulator
                     this.Close();
                 }            
             }
-            new ErrorBox("Hibás felhasználónév vagy jelszó", "Demenciás vagy?", true).ShowDialog();
 
+            if(!isSuccessful)
+            {
+                new ErrorBox("Hibás felhasználónév vagy jelszó!", "Demenciás vagy?", true).ShowDialog();
+                LoginUsername.Clear();
+                LoginPassword.Clear();
+            }
         }
 
 

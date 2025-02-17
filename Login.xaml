@@ -1,18 +1,32 @@
-﻿<Window x:Class="CasinoSimulator.Login"
+﻿<Window FontSize="20" Background="#525252" x:Class="CasinoSimulator.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registration/Login" Height="200" Width="600">
-    <Grid Margin="10">
+        Title="Bejelentkezés/Regisztráció" Height="350" Width="700">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#EF233C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Brush Script MT"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#525252" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Tabs for Registration and Login -->
-        <TabControl>
-            
-            <!-- Login Tab -->
-            <TabItem Header="Bejelentkezés">
+        <TabControl Background="#525252">
+
+            <TabItem Background="#525252" Foreground="White" FontFamily="Brush Script MT" Header="Bejelentkezés">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -20,18 +34,17 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Content="Felhasználónév:"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" Margin="0 20 0 0" />
+                    <Label Grid.Row="0" Foreground="White" Content="Felhasználónév:"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="LoginUsername" Margin="0 35 0 0" />
 
-                    <Label Grid.Row="1" Content="Jelszó:" />
-                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" Margin="0 20 0 0"/>
+                    <Label Grid.Row="1" Foreground="White" Content="Jelszó:" />
+                    <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="LoginPassword" Margin="0 35 0 0"/>
 
-                    <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Login" Click="LoginButton_Click" />
+                    <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Bejelentkezés" Click="LoginButton_Click" />
                 </Grid>
             </TabItem>
-            
-            <!-- Registration Tab -->
-            <TabItem Header="Regisztráció">
+
+            <TabItem Background="#525252" Foreground="White" FontFamily="Brush Script MT" Header="Regisztráció">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -41,14 +54,14 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Felhasználónév:" />
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" Margin="0 20 0 0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Foreground="White" Text="Felhasználónév:" />
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="RegisterUsername" Margin="0 30 0 0"/>
 
-                    <Label Grid.Row="1" Content="Kor:" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" Margin="0 20 0 0"/>
-                    
-                    <Label Grid.Row="2" Content="Jelszó:" />
-                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" Margin="0 20 0 0"/>
+                    <Label Grid.Row="1" Foreground="White" Content="Kor:" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="RegisterAge" Margin="0 30 0 0"/>
+
+                    <Label Grid.Row="2" Foreground="White" Content="Jelszó:" />
+                    <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="RegisterPassword" Margin="0 30 0 0"/>
 
                     <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Regisztráció" Click="RegisterButton_Click" />
                 </Grid>

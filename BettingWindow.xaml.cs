@@ -24,7 +24,7 @@ namespace CasinoSimulator
             }
             else
             {
-                MessageBox.Show("Hibás Tét! A Tét 0-nál nagyobb, de az egyenlegedtől kisebb kell hogy legyen.", "Téti hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                new ErrorBox("A Tétnek 0-nál nagyobbnak, de az egyenlegednél kisebbnek kell lennie!", "Téti hiba", true).ShowDialog();
                 txtBet.Clear();
                 txtBet.Focus();
             }

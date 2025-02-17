@@ -17,6 +17,7 @@ namespace CasinoSimulator
         private User currentUser = Login.CurrentUser;
         private int balance;
         private int betAmount;
+        private Random r = new Random();
 
         public BlackJack()
         {
@@ -82,25 +83,16 @@ namespace CasinoSimulator
             playerCardsPanel.Children.Clear();
             dealerCardsPanel.Children.Clear();
 
-            WrapPanel playerWrapPanel = new WrapPanel();
-            WrapPanel dealerWrapPanel = new WrapPanel();
-
             foreach (Card card in playerCards)
             {
-                Functions.AddImageWrapPanel(playerWrapPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
 
             foreach (Card card in dealerCards)
             {
-                Functions.AddImageWrapPanel(dealerWrapPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
-
-            playerCardsPanel.Children.Add(playerWrapPanel);
-            dealerCardsPanel.Children.Add(dealerWrapPanel);
         }
-
-
-
 
         private int CalculateScore(List<Card> cards)
         {
@@ -173,7 +165,6 @@ namespace CasinoSimulator
 
         private Card DrawCard()
         {
-            var r = new Random();
             int cardIndex = r.Next(0, allCards.Count);
             return allCards[cardIndex];
         }
@@ -200,7 +191,7 @@ namespace CasinoSimulator
         {
             if (balance <= 0)
             {
-                new ErrorBox("Elfogyott a pénzed, játék vége!", "Csóró János", true).ShowDialog();
+                new ErrorBox("Elfogyott a pénzed, játék vége!", "Olcsó János", true).ShowDialog();
                 GameChoice gCWindow = new GameChoice();
                 gCWindow.Show();
                 this.Close();
