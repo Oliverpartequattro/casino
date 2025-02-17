@@ -225,28 +225,30 @@ namespace CasinoSimulator
             double totalRotation = 360 * 5 + (360 + currentAngle) - targetAngle; // Add multiple spins for effect
 
             // Define the spin animation
-            var animation = new DoubleAnimation(0, totalRotation, new Duration(TimeSpan.FromSeconds(5)))
+            var animation = new DoubleAnimation(0, totalRotation, new Duration(TimeSpan.FromSeconds(10)))
             {
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
+            };
+
+            animation.Completed += (sender, e) =>
+            {
+                // Display the winning number
+                
+                if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
+                {
+                    balance += (currentBet * 36);
+                    MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                }
+                else { balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!"); }
+                UpdateUI();
             };
 
             // Start the wheel spin animation
             rotateTransform.BeginAnimation(RotateTransform.AngleProperty, animation);
 
             // Handle animation completion
-            animation.Completed += (s, _) =>
-            {
-                // Display the winning number
-                MessageBox.Show($"A nyertes szám: {winningNumber}");
-            };
 
 
-            if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
-            {
-                balance += (currentBet * 36);
-            }
-            else { balance -= currentBet; }
-            UpdateUI();
             currentStep = int.Parse(numbers[winningNumberIndex]);
         }
 
