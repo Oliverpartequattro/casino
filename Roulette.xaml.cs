@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -140,8 +141,8 @@ namespace CasinoSimulator
             for (int i = 0; i < 13; i++)
                 bettingTable.ColumnDefinitions.Add(new ColumnDefinition());
 
-            string[] numbers = { "3", "2", "1", "6", "5", "4", "9", "8", "7", "12", "11", "10", "15", "14", "13", "18", "17", "16", "21", "20", "19", "24", "23", "22", "27", "26", "25", "30", "29", "28", "33", "32", "31", "36", "35", "34", "0" };
-            string[] colors = { "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Green" };
+            string[] numbers = { "3", "2", "1", "6", "5", "4", "9", "8", "7", "12", "11", "10", "15", "14", "13", "18", "17", "16", "21", "20", "19", "24", "23", "22", "27", "26", "25", "30", "29", "28", "33", "32", "31", "36", "35", "34", "0", "Black", "Red" };
+            string[] colors = { "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Red", "Black", "Black", "Black", "Red", "Black", "Red", "Black", "Red", "Green", "Black", "Red" };
 
             for (int i = 0; i < numbers.Length; i++)
             {
@@ -213,11 +214,16 @@ namespace CasinoSimulator
                          "30", "8", "23", "10", "5", "24", "16", "33", "1", "20", "14", "31", "9", "22", "18",
                          "29", "7", "28", "12", "35", "3", "26" };
 
+            string[] colors = { "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red",
+                        "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black",
+                        "Red", "Black", "Red", "Black", "Green", "Red", "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red" };
+
             int currentStep = 27;
 
             // Pre-calculate the winning number
             int winningNumberIndex = random.Next(0, 37);
             string winningNumber = numbers[winningNumberIndex];
+            string winningColor = colors[winningNumberIndex];
             // Calculate the target rotation angle
             double angleStep = 360.0 / numbers.Length;
             double targetAngle = winningNumberIndex * angleStep;
@@ -233,12 +239,17 @@ namespace CasinoSimulator
             animation.Completed += (sender, e) =>
             {
                 // Display the winning number
-                
-                if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
+                if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && selectedBetButton.Content.ToString() == (winningColor))
+                {
+                    balance += (currentBet * 2);
+                    MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    Functions.changeBalance(currentBet * 2, Login.CurrentUser);
+                }
+                else if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.TryParse(selectedBetButton.Content.ToString(), out int res) && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
                 {
                     balance += (currentBet * 36);
                     MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
-                    Functions.changeBalance(currentBet, Login.CurrentUser);
+                    Functions.changeBalance(currentBet * 36, Login.CurrentUser);
                 }
                 else { 
                     balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!");
