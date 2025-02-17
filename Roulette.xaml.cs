@@ -175,7 +175,7 @@ namespace CasinoSimulator
         {
             if (selectedBetButton == null || balance <= 0)
             {
-                MessageBox.Show("Please select a valid bet or check your balance!");
+                MessageBox.Show("Adj le érvényes fogadást, vagy ellenőrizd az egyenleged!");
                 return;
             }
 
@@ -187,11 +187,11 @@ namespace CasinoSimulator
         {
             if (currentBet == 0)
             {
-                MessageBox.Show("Bet before playing!");
+                MessageBox.Show("Tedd meg a tétet pörgetés előtt!");
             }
             else if (currentBet > balance)
             {
-                MessageBox.Show("You don't have enough balance for this bet!");
+                MessageBox.Show("Ehhez nincs elég pénzed!");
             }
             else { StartWheel_ClickCheck(sender, e); }
         }
@@ -237,7 +237,7 @@ namespace CasinoSimulator
             animation.Completed += (s, _) =>
             {
                 // Display the winning number
-                MessageBox.Show($"Winning number is: {winningNumber}");
+                MessageBox.Show($"A nyertes szám: {winningNumber}");
             };
 
 
@@ -253,8 +253,8 @@ namespace CasinoSimulator
 
         private void UpdateUI()
         {
-            currentBetText.Text = $"Current Bet: {currentBet}";
-            balanceText.Text = $"Balance: {balance}";
+            currentBetText.Text = $"Jelenlegi tét: {currentBet}";
+            balanceText.Text = $"Egyenleg: {balance}";
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Close();
@@ -263,24 +263,24 @@ namespace CasinoSimulator
         {
             if (selectedBetButton == null || balance <= 0)
             {
-                MessageBox.Show("Please select a valid bet or check your balance!");
+                MessageBox.Show("Adj le érvényes fogadást, vagy ellenőrizd az egyenleged!");
                 return;
             }
 
             string input = Microsoft.VisualBasic.Interaction.InputBox(
-                "Enter the amount you want to bet:",
-                "Custom Bet",
+                "Add meg a fogadni kívánt mennyiséget:",
+                "Egyéni fogadás",
                 "");
 
             if (int.TryParse(input, out int betAmount))
             {
                 if (betAmount <= 0)
                 {
-                    MessageBox.Show("Please enter a positive amount!");
+                    MessageBox.Show("Pozitív számot adj meg!");
                 }
                 else if (betAmount > balance)
                 {
-                    MessageBox.Show("You don't have enough balance for this bet!");
+                    MessageBox.Show("Ehhez nincs elég pénzed!");
                 }
                 else
                 {
@@ -290,7 +290,7 @@ namespace CasinoSimulator
             }
             else
             {
-                MessageBox.Show("Invalid input! Please enter a numeric value.");
+                MessageBox.Show("Érvénytelen fogadás, adj meg egy számot!");
             }
         }
 

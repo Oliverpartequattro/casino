@@ -23,17 +23,17 @@
         <!-- Buttons and Status -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,50" Height="134" Width="1520">
             <StackPanel VerticalAlignment="Center" >
-                <Button Content="Place Bet (100)" Width="300" Height="50" Margin="5" Click="PlaceBet_Click" FontSize="30" FontWeight="Bold"/>
-                <Button Content="Place Bet (custom)" Width="300" Height="50" Margin="5" Click="PlaceBetCustom_Click" FontSize="30" FontWeight="Bold"/>
+                <Button Content="Fogadás (100)" Width="300" Height="50" Margin="5" Click="PlaceBet_Click" FontSize="30" FontWeight="Bold"/>
+                <Button Content="Fogadás (egyéni)" Width="300" Height="50" Margin="5" Click="PlaceBetCustom_Click" FontSize="30" FontWeight="Bold"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" Margin="50, 0, 0, 0">
-                <TextBlock Name="currentBetText" Text="Current Bet: 0" Foreground="White" FontSize="30" Margin="5" VerticalAlignment="Center"/>
-                <TextBlock Name="balanceText" Text="Balance: " Foreground="White" FontSize="30" Margin="5" VerticalAlignment="Center"/>
+                <TextBlock Name="currentBetText" Text="Jelenlegi tét: 0" Foreground="White" FontSize="30" Margin="5" VerticalAlignment="Center"/>
+                <TextBlock Name="balanceText" Text="Egyenleg: " Foreground="White" FontSize="30" Margin="5" VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="604,0,0,50" Height="134" Width="966">
-            <Button Content="Start Wheel" Width="200" Height="50" Margin="200, 0, 0, 0" Click="StartWheel_Click" FontSize="30" FontWeight="Bold"/>
-            <Button Content="Exit" Width="140" Height="50" Click="Exit_Click" Background="Red" Foreground="White" FontSize="30" Margin="400, 0, 0, 0" VerticalAlignment="Center" FontWeight="Bold"/>
+            <Button Content="Pörgetés" Width="200" Height="50" Margin="200, 0, 0, 0" Click="StartWheel_Click" FontSize="30" FontWeight="Bold"/>
+            <Button Content="Kilépés" Width="140" Height="50" Click="Exit_Click" Background="Red" Foreground="White" FontSize="30" Margin="400, 0, 0, 0" VerticalAlignment="Center" FontWeight="Bold"/>
         </StackPanel>
     </Grid>
 </Window>
