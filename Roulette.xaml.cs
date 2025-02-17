@@ -240,6 +240,7 @@ namespace CasinoSimulator
                     MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
                 }
                 else { balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!"); }
+                Functions.changeBalance(balance, Login.CurrentUser);
                 UpdateUI();
             };
 
