@@ -76,7 +76,7 @@ namespace CasinoSimulator
                 }
             }
 
-            MessageBox.Show("Sikeres regisztráció!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
+            new ErrorBox("Sikeres regisztráció!", "Büszke lehetsz magadra", false).ShowDialog();
             RegisterUsername.Clear();
             RegisterAge.Clear();
             RegisterPassword.Clear();
@@ -93,7 +93,7 @@ namespace CasinoSimulator
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 new ErrorBox("Minden mezö kitöltése kötelezö!", "Üres mezők", true).ShowDialog();
-                return;
+                return; 
             }
 
             foreach (var user in users)
@@ -101,7 +101,7 @@ namespace CasinoSimulator
                 if (user.Username == username && user.Password == password)
                 {
                     Login.CurrentUser = user;
-                    MessageBox.Show("Sikeres bejelentkezés!", "Siker", MessageBoxButton.OK, MessageBoxImage.Information);
+                    new ErrorBox("Sikeres bejelentkezés!", "Csak sikerült", false).ShowDialog();
                     GameChoice gameChoiceWindow = new GameChoice();
                     gameChoiceWindow.Show();
                     this.Close();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace CasinoSimulator
 {
@@ -10,11 +11,14 @@ namespace CasinoSimulator
             InitializeComponent();
             ErrorMessage.Text = message;
             this.Title = title;
+            this.btn.Content = "Sajnálom";
 
             if (!isError)
             {
-                this.ErrorMessage.Foreground = System.Windows.Media.Brushes.Green;
-                this.btn.Foreground = System.Windows.Media.Brushes.Red;
+                this.g.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF4CAF50"));
+                this.btn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5733"));
+                this.btn.Content = "Köszönöm";
+
             }
         }
 

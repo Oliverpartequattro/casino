@@ -19,7 +19,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#FFD9534F">
+    <Grid Name="g" Background="#FFD9534F">
         <Border CornerRadius="10" Padding="10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock x:Name="ErrorMessage" Text="Hiba történt!" FontSize="25" Foreground="White" 
