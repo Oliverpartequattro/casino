@@ -44,13 +44,18 @@ namespace CasinoSimulator
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ageTxt) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Minden mezőt ki kell tölteni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                new ErrorBox("Minden mezö kitöltése kötelezö!", "Üres mezők", true).ShowDialog();
                 return;
             }
 
             if (!int.TryParse(ageTxt, out int age))
             {
-                MessageBox.Show("Az életkornak egy számnak kell lennie!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                new ErrorBox("A kornak egy számnak kell lennie!", "Düddő", true).ShowDialog();
+                return;
+            }
+            if (int.Parse(ageTxt) < 18)
+            {
+                new ErrorBox("Legalább 18 évesnek kell lenned!", "Te majom", true).ShowDialog();
                 return;
             }
 
@@ -65,7 +70,7 @@ namespace CasinoSimulator
             }
             else
             {
-                using (StreamWriter sw = new StreamWriter("data/users.csv", false))
+                using (StreamWriter sw = new StreamWriter("data/users.csv", true))
                 {
                     sw.WriteLine(newUserRow);
                 }
@@ -87,7 +92,7 @@ namespace CasinoSimulator
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Minden mezőt ki kell tölteni!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                new ErrorBox("Minden mezö kitöltése kötelezö!", "Üres mezők", true).ShowDialog();
                 return;
             }
 
@@ -100,16 +105,13 @@ namespace CasinoSimulator
                     GameChoice gameChoiceWindow = new GameChoice();
                     gameChoiceWindow.Show();
                     this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Hibás felhasználónév vagy jelszó!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                }            
             }
+            new ErrorBox("Hibás felhasználónév vagy jelszó", "Demenciás vagy?", true).ShowDialog();
 
         }
 
-        
+
 
 
     }
