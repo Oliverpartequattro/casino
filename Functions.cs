@@ -43,6 +43,21 @@ namespace CasinoSimulator
 
             stackPanel.Children.Add(img);
         }
+        public static void AddImageWrapPanel(WrapPanel wrapPanel, int row, int column, string imgName, int width, int height, string folder, double ml, double mt, double mr, double mb)
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, folder, imgName);
+            ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+
+            Image img = new Image
+            {
+                Source = src,
+                Width = width,
+                Height = height,
+                Margin = new Thickness(ml, mt, mr, mb)
+            };
+
+            wrapPanel.Children.Add(img);
+        }
 
         public static void changeBalance(int bal, User modifiedUser)
         {

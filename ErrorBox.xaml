@@ -24,9 +24,12 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock x:Name="ErrorMessage" Text="Hiba történt!" FontSize="25" Foreground="White" 
                            FontFamily="Brush Script MT" TextAlignment="Center" TextWrapping="Wrap" Margin="10"/>
-                <Button Name="btn" Content="Sajnálom" Width="130" Height="45" Click="OkButton_Click" FontSize="25"
-                        Background="#FF4CAF50" Foreground="White"
-                        HorizontalAlignment="Center"/>
+                <Button x:Name="btnOk" Content="OK" Click="OkButton_Click" 
+                    Width="80" Height="30" Background="Red" Foreground="White"/>
+                <Button x:Name="btnYes" Content="Igen" Click="YesButton_Click" 
+                    Width="80" Height="30" Background="Green" Foreground="White" Visibility="Collapsed"/>
+                <Button x:Name="btnNo" Content="Nem" Click="NoButton_Click" 
+                    Width="80" Height="30" Background="#FF5733" Foreground="White" Visibility="Collapsed"/>
             </StackPanel>
         </Border>
     </Grid>

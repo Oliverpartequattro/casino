@@ -82,16 +82,23 @@ namespace CasinoSimulator
             playerCardsPanel.Children.Clear();
             dealerCardsPanel.Children.Clear();
 
+            WrapPanel playerWrapPanel = new WrapPanel();
+            WrapPanel dealerWrapPanel = new WrapPanel();
+
             foreach (Card card in playerCards)
             {
-                Functions.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageWrapPanel(playerWrapPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
 
             foreach (Card card in dealerCards)
             {
-                Functions.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageWrapPanel(dealerWrapPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
+
+            playerCardsPanel.Children.Add(playerWrapPanel);
+            dealerCardsPanel.Children.Add(dealerWrapPanel);
         }
+
 
 
 
@@ -106,7 +113,7 @@ namespace CasinoSimulator
             UpdateUI();
             if (CalculateScore(playerCards) > 21)
             {
-                MessageBox.Show("Túlment 21-en!");
+                new ErrorBox("Túlment 21-en!", "Bust", true).ShowDialog();
                 DealerTurn();
             }
         }
@@ -173,8 +180,10 @@ namespace CasinoSimulator
 
         private void EndGame(string message, string title)
         {
-            MessageBoxResult result = MessageBox.Show(message, title, MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            ErrorBox questionBox = new ErrorBox(message, title, false, true);
+            questionBox.ShowDialog();  
+
+            if (questionBox.Answer)
             {
                 ResetGame();
             }
@@ -186,20 +195,23 @@ namespace CasinoSimulator
             }
         }
 
+
         private void ResetGame()
         {
             if (balance <= 0)
             {
-                MessageBox.Show("Elfogyott a pénzed!", "Játék vége", MessageBoxButton.OK, MessageBoxImage.Warning);
+                new ErrorBox("Elfogyott a pénzed, játék vége!", "Csóró János", true).ShowDialog();
                 GameChoice gCWindow = new GameChoice();
                 gCWindow.Show();
                 this.Close();
                 return;
             }
+
             playerCards.Clear();
             dealerCards.Clear();
             DealCards();
         }
+
 
         private void BtnNewBet_Click(object sender, RoutedEventArgs e)
         {
