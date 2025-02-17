@@ -238,9 +238,13 @@ namespace CasinoSimulator
                 {
                     balance += (currentBet * 36);
                     MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    Functions.changeBalance(currentBet, Login.CurrentUser);
                 }
-                else { balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!"); }
-                Functions.changeBalance(balance, Login.CurrentUser);
+                else { 
+                    balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!");
+                    Functions.changeBalance(currentBet * -1, Login.CurrentUser);
+                }
+                
                 UpdateUI();
             };
 
@@ -287,7 +291,7 @@ namespace CasinoSimulator
                 }
                 else
                 {
-                    currentBet += betAmount;
+                    currentBet = betAmount;
                     UpdateUI();
                 }
             }
