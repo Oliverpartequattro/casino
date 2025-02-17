@@ -14,6 +14,7 @@ namespace CasinoSimulator
         private List<Card> dealerCards;
         private List<Card> playerCards;
         private List<Card> allCards;
+        private User currentUser = Login.CurrentUser;
         private int balance;
         private int betAmount;
 
@@ -23,7 +24,7 @@ namespace CasinoSimulator
             allCards = InitCards();
             dealerCards = new List<Card>();
             playerCards = new List<Card>();
-            balance = Login.CurrentUser?.Balance ?? 0;
+            balance = currentUser.Balance;
             BettingScreen();
             DealCards();
         }
@@ -40,7 +41,8 @@ namespace CasinoSimulator
             if (bettingWindow.ShowDialog() == true)
             {
                 betAmount = bettingWindow.BetAmount;
-                balance -= betAmount; 
+                balance -= betAmount;
+                Functions.changeBalance(betAmount * -1, currentUser);
                 txtBalance.Text = balance.ToString(); 
             }
             else
@@ -82,12 +84,12 @@ namespace CasinoSimulator
 
             foreach (Card card in playerCards)
             {
-                ImageAdder.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageStackPanel(playerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
 
             foreach (Card card in dealerCards)
             {
-                ImageAdder.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
+                Functions.AddImageStackPanel(dealerCardsPanel, 0, 0, card.Img, 50, 75, "", 5, 5, 5, 5);
             }
         }
 
@@ -134,18 +136,21 @@ namespace CasinoSimulator
             if (playerFinalScore > 21)
             {
                 balance -= betAmount;
+                Functions.changeBalance(betAmount * -1, currentUser);
                 message = "Túlment 21-en! Új játék?";
                 title = "Vereség";
             }
             else if (dealerFinalScore > 21 || playerFinalScore > dealerFinalScore)
             {
                 balance += betAmount * 2;
+                Functions.changeBalance(betAmount * 2, currentUser);
                 message = "Dealer veszített! Új játék?";
                 title = "Győzelem";
             }
             else if (dealerFinalScore > playerFinalScore)
             {
                 balance -= betAmount;
+                Functions.changeBalance(betAmount * -1, currentUser);
                 message = "Dealer nyert! Új játék?";
                 title = "Vereség";
             }
