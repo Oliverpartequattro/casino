@@ -22,7 +22,7 @@ namespace CasinoSimulator
     {
 
         private List<User> users;
-        public static User CurrentUser { get; set; }
+        public static User CurrentUser { get; set; } = null;
         public Login()
         {
             users = InitUsers();
