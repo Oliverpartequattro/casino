@@ -241,18 +241,24 @@ namespace CasinoSimulator
                 // Display the winning number
                 if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && selectedBetButton.Content.ToString() == (winningColor))
                 {
+                    balance -= currentBet;
                     balance += (currentBet * 2);
-                    MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    //MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    new ErrorBox($"A nyertes szám: {winningNumber}, nyertél {currentBet * 2} creditet!", "Nyertél", false).ShowDialog();
                     Functions.changeBalance(currentBet * 2, Login.CurrentUser);
                 }
                 else if (selectedBetButton != null && selectedBetButton.Content.ToString() != null && int.TryParse(selectedBetButton.Content.ToString(), out int res) && int.Parse(selectedBetButton.Content.ToString()) == int.Parse(winningNumber))
                 {
+                    balance -= currentBet;
                     balance += (currentBet * 36);
-                    MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    //MessageBox.Show($"A nyertes szám: {winningNumber}, nyertél!");
+                    new ErrorBox($"A nyertes szám: {winningNumber}, nyertél {currentBet * 36} creditet!", "Nyertél", false).ShowDialog();
                     Functions.changeBalance(currentBet * 36, Login.CurrentUser);
                 }
-                else { 
-                    balance -= currentBet; MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!");
+                else {
+                    balance -= currentBet; 
+                    //MessageBox.Show($"A nyertes szám: {winningNumber}, veszettél!");
+                    new ErrorBox($"A nyertes szám: { winningNumber }, veszettél!", "Veszettél", true).ShowDialog();
                     Functions.changeBalance(currentBet * -1, Login.CurrentUser);
                 }
                 
