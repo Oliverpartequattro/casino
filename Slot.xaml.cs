@@ -22,11 +22,14 @@ namespace CasinoSimulator
         private int screenSize = 800;
         private int amount = 1;
         private int loseCounter = 0;
+        private User currentUser = Login.CurrentUser;
+
 
 
         public Slot()
         {
             InitializeComponent();
+            credits = currentUser.Balance;
             BackgroundApear();
             UpdateCreditsDisplay();
             UpdateBetDisplay();
@@ -35,14 +38,20 @@ namespace CasinoSimulator
         private async void SpinButton_Click(object sender, RoutedEventArgs e)
         {
 
-            
+
             if (credits <= 0)
             {
-                MessageBox.Show("You're out of credits! Reset the game to play again.", "Game Over");
+                new ErrorBox("Nincsen pénzed!", "Game Over", true).ShowDialog();
                 return;
             }
-            
-            credits -= amount; 
+            if (credits < amount)
+            {
+                new ErrorBox("Nincsen elég pénzed!", "Bet Error", true).ShowDialog();
+                return;
+            }
+
+            credits -= amount;
+            Functions.changeBalance(amount * -1, currentUser);
             UpdateCreditsDisplay();
 
             SpinButton.IsEnabled = false;
@@ -55,7 +64,8 @@ namespace CasinoSimulator
             {
                 int winnings = amount * 50;
                 credits += winnings;
-                MessageBox.Show($"Congratulations! You won {winnings} credits!", "Winner!");
+                Functions.changeBalance(winnings, currentUser);
+                new ErrorBox($"Gratulálunk! Nyertél {winnings} creditet!", "Winner", false).ShowDialog(); 
                 UpdateCreditsDisplay();
             }
             else
@@ -120,6 +130,14 @@ namespace CasinoSimulator
             amount = amount+=1;
             UpdateBetDisplay();
         }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e) 
+        {
+            GameChoice gCWindow = new GameChoice();
+            gCWindow.Show();
+            this.Close();
+        }
+        
     }
     
 }

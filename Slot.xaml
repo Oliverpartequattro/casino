@@ -34,6 +34,9 @@
         <StackPanel Grid.Row="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click" Background="Black" Foreground="White"/>
         </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="ExitButton" Content="Exit" FontSize="24" Padding="10" Margin="10" Click="ExitButton_Click" Background="Red" Foreground="White"/>
+        </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Padding="10" Click="PlusButton_Click" Height="70" Width="70" Background="Black" Foreground="White" VerticalAlignment="Center"/>
             <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="10"  Click="MinusButton_Click" Height="65" Width="65" Foreground="White" Background="Black" VerticalAlignment="Center"/>

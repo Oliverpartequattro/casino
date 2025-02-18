@@ -31,8 +31,9 @@ namespace CasinoSimulator
                 { "roadwblock.jpg" },
         };
 
+        private User currentUser = Login.CurrentUser;
         private double amount = 1;
-        private double credits = 100;
+        private double credits = 0;
         private Random random = new Random();
         private Rectangle chicken;
         private int chickenSpeed = 40;
@@ -49,7 +50,9 @@ namespace CasinoSimulator
         {
             steps = random.Next(2, 22);
             InitializeComponent();
+            credits = currentUser.Balance;
             UpdateBetDisplay();
+            UpdateCreditsDisplay();
             BackgroundCreation();
             InitializeGame();
 
@@ -57,11 +60,8 @@ namespace CasinoSimulator
 
         private void InitializeGame()
         {
-            if (credits <= 0)
-            {
-                MessageBox.Show("You're out of credits!", "Game Over");
-                return;
-            }
+            
+            
             chicken = new Rectangle
             {
                 Width = 20,
@@ -78,6 +78,16 @@ namespace CasinoSimulator
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
+            if (credits <= 0)
+            {
+                new ErrorBox("Nincsen pénzed!", "Game Over", true).ShowDialog();
+                return;
+            }
+            if (credits < amount)
+            {
+                new ErrorBox("Nincsen elég pénzed!", "Bet Error", true).ShowDialog();
+                return;
+            }
             double x = Canvas.GetLeft(chicken);
             double y = Canvas.GetTop(chicken);
             bool a = x < (gameCanvas.Width - chicken.Width);
@@ -102,9 +112,10 @@ namespace CasinoSimulator
         private void CheckRestratGame()
         {
             credits -= amount;
+            Functions.changeBalance((int)amount * -1, currentUser);
             UpdateCreditsDisplay();
-            if (stepsForward == 21) { MessageBox.Show("Winner"); credits += amount * 10; }
-            if (stepsForward > steps) { MessageBox.Show("Game Over"); }
+            if (stepsForward == 21) { new ErrorBox($"Gratulálunk! Nyertél {amount * 10} creditet!", "Winner", false).ShowDialog(); credits += amount * 10; Functions.changeBalance((int)amount * 10, currentUser); }
+            if (stepsForward > steps) { new ErrorBox($"Vesztettél", "Game Over", true).ShowDialog(); }
             Canvas.SetLeft(chicken, chickenStarCordinate);
             Canvas.SetTop(chicken, (Height - 50) / 2);
             stepsForward = 0;
@@ -174,7 +185,16 @@ namespace CasinoSimulator
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             int cordinate = (chickenCordinate - chickenStarCordinate) / chickenSpeed;
-            credits += multipliers[cordinate] * amount;
+            if (cordinate < 1)
+            {
+                new ErrorBox("Lépned kell", "Step Error", true).ShowDialog(); ;
+                return;
+            }
+            else
+            {
+                credits += multipliers[cordinate] * amount;
+                new ErrorBox($"Gratulálunk!! Nyertél {Math.Round(multipliers[cordinate] * amount)} creditet.", "Step Error", false).ShowDialog(); ;
+            }
             CheckRestratGame();
         }
 
@@ -197,6 +217,12 @@ namespace CasinoSimulator
         {
             amount = amount += 1;
             UpdateBetDisplay();
+        }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameChoice gCWindow = new GameChoice();
+            gCWindow.Show();
+            this.Close();
         }
     }
 }
