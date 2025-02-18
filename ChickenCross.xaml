@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CasinoSimulator"
         mc:Ignorable="d"
         Title="ChickenCross" Height="450" Width="1000">
-        <Canvas Name="gameCanvas" Background="SaddleBrown" Width="1000" Height="450">
+        <Canvas Name="gameCanvas" Background="DarkSlateGray" Width="1000" Height="450">
         <Grid Name="myGrid" Height="450" Width="1000"  VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="350"/>

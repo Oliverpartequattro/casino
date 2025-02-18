@@ -24,9 +24,9 @@ namespace CasinoSimulator
             InitializeComponent();
             txtBalance.Text = Login.CurrentUser!.Balance.ToString() ?? "0";
             Functions.AddImageStackPanel(stackBlackjack, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
-            Functions.AddImageStackPanel(stackRoulette, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
-            Functions.AddImageStackPanel(stackSlot, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10,0, 0);
-            Functions.AddImageStackPanel(stackChicken, 0, 0, "blackjack.png", 100, 100, "img/", 0, 10, 0, 0);
+            Functions.AddImageStackPanel(stackRoulette, 0, 0, "RoulettMenuPic.jpg", 100, 100, "img/", 0, 10, 0, 0);
+            Functions.AddImageStackPanel(stackSlot, 0, 0, "SlotMenuPic.jpg", 100, 100, "img/", 0, 10,0, 0);
+            Functions.AddImageStackPanel(stackChicken, 0, 0, "ChickenCrossMenuPic.jpg", 100, 100, "img/", 0, 10, 0, 0);
 
 
         }

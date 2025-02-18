@@ -29,6 +29,7 @@ namespace CasinoSimulator
                 { "finish.jpg" },
                 { "road.jpg" },
                 { "roadwblock.jpg" },
+                { "talca.jpg" },
         };
 
         private User currentUser = Login.CurrentUser;
@@ -40,8 +41,8 @@ namespace CasinoSimulator
         private DispatcherTimer gameTimer;
         private double multiplier = 0.25;
         private double[] multipliers = {};
-        private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20);
-        private int chickenStarCordinate = 100 + (800 / 20 / 4) - (800 / 20);
+        private int chickenCordinate = 100 + (800 / 20 / 4) - (800 / 20)-10;
+        private int chickenStarCordinate = 100 + (800 / 20 / 4) - (800 / 20)-10;
         private int stepsForward = 0;
         int steps = 2;
 
@@ -64,10 +65,14 @@ namespace CasinoSimulator
             
             chicken = new Rectangle
             {
-                Width = 20,
-                Height = 20,
+                Width = 40,
+                Height = 40,
                 Fill = Brushes.Yellow
             };
+
+            var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/chicken", "Chicken.png");
+            ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+            chicken.Fill = new ImageBrush(src);
 
             Canvas.SetLeft(chicken, chickenStarCordinate);
             Canvas.SetTop(chicken, Height/2);
@@ -91,7 +96,7 @@ namespace CasinoSimulator
             double x = Canvas.GetLeft(chicken);
             double y = Canvas.GetTop(chicken);
             bool a = x < (gameCanvas.Width - chicken.Width);
-            if (e.Key == Key.Right && x < (gameCanvas.Width - 100) - chicken.Width)
+            if (e.Key == Key.Right && x < (gameCanvas.Width - 80) - chicken.Width)
             {
                 Canvas.SetLeft(chicken, x + chickenSpeed);
                 chickenCordinate += chickenSpeed;
@@ -165,9 +170,9 @@ namespace CasinoSimulator
                 if (i == 0) { kep = kepek[0]; myGrid.ColumnDefinitions[i].Width = new GridLength(100); };
                 if (i == 21) { kep = kepek[1]; myGrid.ColumnDefinitions[i].Width = new GridLength(100); };
 
-                    var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/chicken", kep);
-                    ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
-                    border.Background = new ImageBrush(src);
+                var path = System.IO.Path.Combine(Environment.CurrentDirectory, "img/chicken", kep);
+                ImageSource src = new BitmapImage(new Uri(path, UriKind.Absolute));
+                border.Background = new ImageBrush(src);
 
                 Grid.SetColumn(border, i);
                 myGrid.Children.Add(border);
