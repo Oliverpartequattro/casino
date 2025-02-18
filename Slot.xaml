@@ -32,20 +32,20 @@
             </Border>
 
         <StackPanel Grid.Row="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click" Background="Black" Foreground="White"/>
+            <Button x:Name="SpinButton" Content="Spin" FontSize="24" Padding="10" Margin="10" Click="SpinButton_Click" Background="#FFFEFF50" Foreground="Black"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Button x:Name="ExitButton" Content="Exit" FontSize="24" Padding="10" Margin="10" Click="ExitButton_Click" Background="Red" Foreground="White"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Padding="10" Click="PlusButton_Click" Height="70" Width="70" Background="Black" Foreground="White" VerticalAlignment="Center"/>
-            <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="10"  Click="MinusButton_Click" Height="65" Width="65" Foreground="White" Background="Black" VerticalAlignment="Center"/>
+            <Button x:Name="PlussButton" Content="+" FontSize="40" Margin="10" Padding="10" Click="PlusButton_Click" Height="70" Width="70" Background="#FFFEFF50" Foreground="Black" VerticalAlignment="Center"/>
+            <Button x:Name="MinusButton" Content="-" FontSize="40"  Margin="10" Padding="10"  Click="MinusButton_Click" Height="65" Width="65" Foreground="Black" Background="#FFFEFF50" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="CreditsText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic"/>
+            <TextBlock Grid.Row="2" Text="Credits: 100" x:Name="CreditsText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic" Foreground="#FFFFA400"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Grid.Row="2" Text="Bet: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic"/>
+            <TextBlock Grid.Row="2" Text="Bet: 100" x:Name="BetText" FontSize="24" HorizontalAlignment="Right" Margin="10" FontFamily="Showcard Gothic" Foreground="#FFFFA400"/>
         </StackPanel>
     </Grid>
 </Window>
