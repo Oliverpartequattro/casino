@@ -281,7 +281,12 @@ namespace CasinoSimulator
             balanceText.Text = $"Egyenleg: {balance}";
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e) => Close();
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            GameChoice gCWindow = new GameChoice();
+            gCWindow.Show();
+            this.Close();
+        }
 
         private void PlaceBetCustom_Click(object sender, RoutedEventArgs e)
         {
@@ -291,31 +296,38 @@ namespace CasinoSimulator
                 return;
             }
 
-            string input = Microsoft.VisualBasic.Interaction.InputBox(
-                "Add meg a fogadni kívánt mennyiséget:",
-                "Egyéni fogadás",
-                "");
-
-            if (int.TryParse(input, out int betAmount))
+            BettingWindow bettingWindow = new BettingWindow(balance);
+            if (bettingWindow.ShowDialog() == true)
             {
-                if (betAmount <= 0)
-                {
-                    MessageBox.Show("Pozitív számot adj meg!");
-                }
-                else if (betAmount > balance)
-                {
-                    MessageBox.Show("Ehhez nincs elég pénzed!");
-                }
-                else
-                {
-                    currentBet = betAmount;
-                    UpdateUI();
-                }
+                currentBet = bettingWindow.BetAmount;
+                UpdateUI();
             }
             else
             {
-                MessageBox.Show("Érvénytelen fogadás, adj meg egy számot!");
+                bettingWindow.Close();
             }
+
+
+            //if (int.TryParse(input, out int betAmount))
+            //{
+            //    if (betAmount <= 0)
+            //    {
+            //        MessageBox.Show("Pozitív számot adj meg!");
+            //    }
+            //    else if (betAmount > balance)
+            //    {
+            //        MessageBox.Show("Ehhez nincs elég pénzed!");
+            //    }
+            //    else
+            //    {
+            //        currentBet = betAmount;
+            //        UpdateUI();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Érvénytelen fogadás, adj meg egy számot!");
+            //}
         }
 
     }

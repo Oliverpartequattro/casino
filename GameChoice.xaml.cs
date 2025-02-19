@@ -59,6 +59,8 @@ namespace CasinoSimulator
         {
             Roulette roulette = new Roulette();
             roulette.Show();
+
+            this.Close();
         }
     }
 }
