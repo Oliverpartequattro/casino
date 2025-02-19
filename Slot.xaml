@@ -21,13 +21,13 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Fruit Brush" FontFamily="Showcard Gothic" FontSize="60" FontStyle="Italic" Foreground="#FFD1D23F" HorizontalAlignment="Center" Margin="10"/>
 
-        <Border Name="Border1" Grid.Row="1" Grid.Column="0"  BorderThickness="2" Margin="60 45 " Padding="10" Background="#FF020202">
+        <Border Name="Border1" Grid.Row="1" Grid.Column="0"  BorderThickness="2" Margin="60 45 " Padding="10" Opacity="0.3" Background="#FF020202">
             <TextBlock Opacity="0" x:Name="Reel1" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
         </Border>
-        <Border Name="Border2"  Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 45 " Padding="10" Background="Black">
+        <Border Name="Border2"  Grid.Row="1" Grid.Column="1" BorderThickness="2" Margin="60 45 " Padding="10" Opacity="0.3" Background="Black">
             <TextBlock Opacity="0" x:Name="Reel2" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
         </Border>
-        <Border Name="Border3"  Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 45 " Padding="10" Background="Black">
+        <Border Name="Border3"  Grid.Row="1" Grid.Column="2" BorderThickness="2" Margin="60 45 " Padding="10" Opacity="0.3" Background="Black">
             <TextBlock Opacity="0" x:Name="Reel3" Width="60" Text="" FontSize="48" HorizontalAlignment="Center" TextAlignment="Center"/>
         </Border>
 

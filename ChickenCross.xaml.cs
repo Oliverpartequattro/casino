@@ -198,7 +198,7 @@ namespace CasinoSimulator
             else
             {
                 credits += multipliers[cordinate] * amount;
-                new ErrorBox($"Gratulálunk!! Nyertél {Math.Round(multipliers[cordinate] * amount)} creditet.", "Step Error", false).ShowDialog(); ;
+                new ErrorBox($"Gratulálunk!! Nyertél {Math.Round(multipliers[cordinate] * amount)} creditet.", "Step Error", false).ShowDialog();
             }
             CheckRestratGame();
         }
@@ -214,8 +214,15 @@ namespace CasinoSimulator
 
         private void MinusButton_Click(object sender, RoutedEventArgs e)
         {
-            amount = amount -= 1;
-            UpdateBetDisplay();
+            if (amount <= 1)
+            {
+                new ErrorBox("Nem tudsz 0 tétet rakni","Bet error", true).ShowDialog();
+            }
+            else 
+            { 
+                amount = amount -= 1;
+                UpdateBetDisplay();
+            }
         }
 
         private void PlusButton_Click(object sender, RoutedEventArgs e)
