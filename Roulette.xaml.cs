@@ -281,7 +281,12 @@ namespace CasinoSimulator
             balanceText.Text = $"Egyenleg: {balance}";
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e) => Close();
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            GameChoice gCWindow = new GameChoice();
+            gCWindow.Show();
+            this.Close();
+        }
 
         private void PlaceBetCustom_Click(object sender, RoutedEventArgs e)
         {
